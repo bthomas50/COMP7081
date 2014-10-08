@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 
-package server;
+package server.MsgHandlers;
 
 import java.sql.Connection;
 import server.DB.DB;
 import server.DB.Users;
+import server.User;
 
 /**
  *

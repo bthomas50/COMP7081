@@ -130,13 +130,13 @@ public class ClientGUI extends JFrame implements ActionListener {
 
         // if it is the Logout button
 		if(o == logout) {
-			client.sendMessage(new ChatMessage(ChatMessage.LOGOUT, ""));
+			client.sendMessage(new ChatMessage(ChatMessage.MESSAGE, "/logout"));
 			return;
 		}
 
         // if it the who is in button
 		if(o == whoIsIn) {
-			client.sendMessage(new ChatMessage(ChatMessage.WHOISIN, ""));				
+			client.sendMessage(new ChatMessage(ChatMessage.MESSAGE, "/whoisin"));				
 			return;
 		}
 

@@ -52,7 +52,7 @@ public final class SlashCommand
             return E_IGNORED; // not a command
         }
 
-//        eRole = pUser.getRoleEnum();
+          eRole = pUser.getRoleEnum();
 //
 //        // Do nothing and consume the command if the user has no management or
 //        // team chat rights so the server doesn't have to check every message.
@@ -71,7 +71,9 @@ public final class SlashCommand
             // team chat: return the string's char index after /t plus a space
             return sMsg.indexOf("/t") + 3;
         }
-
+        // Only admins and scrum masters are allowed beyond this point
+//        if (eRole < Role.E_MASTER)
+//            return E_CONSUMED;
 
         switch (s)
         {

@@ -36,14 +36,14 @@ public class ScrumMasterRole implements Role
     public boolean canAddUser(String team)
     {
         //this method isn't fully implemented yet - needs UserData to work properly.
-        return user.getTeam().equals(team);
+        return user.getTeamName().equals(team);
     }
 
     @Override
     public boolean canRemoveUser(String team)
     {
         //this method isn't fully implemented yet - needs UserData to work properly.
-        return user.getTeam().equals(team);
+        return user.getTeamName().equals(team);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ScrumMasterRole implements Role
     {
         //this method isn't fully implemented yet - needs UserData to work properly.
         return compareTo(newRole) > 0 && 
-               user.getTeam().equals(team);
+            user.getTeamName().equals(team);
     }
     
     @Override
