@@ -1,5 +1,11 @@
 package server;
 
+import server.MsgHandlers.SetTeamHandler;
+import server.MsgHandlers.RemoveUserHandler;
+import server.MsgHandlers.SetCompanyHandler;
+import server.MsgHandlers.AddUserHandler;
+import server.MsgHandlers.SetRoleHandler;
+import server.MsgHandlers.WhoIsInHandler;
 import server.Roles.Role;
 
 /**
@@ -46,12 +52,12 @@ public final class SlashCommand
             return E_IGNORED; // not a command
         }
 
-        eRole = pUser.getRoleEnum();
-
-        // Do nothing and consume the command if the user has no management or
-        // team chat rights so the server doesn't have to check every message.
-        if (eRole < Role.E_DEV)
-            return E_CONSUMED;
+//        eRole = pUser.getRoleEnum();
+//
+//        // Do nothing and consume the command if the user has no management or
+//        // team chat rights so the server doesn't have to check every message.
+//        if (eRole < Role.E_DEV)
+//            return E_CONSUMED;
         
         as = s.trim().split("\\s+");
         s = as[0];
@@ -66,9 +72,6 @@ public final class SlashCommand
             return sMsg.indexOf("/t") + 3;
         }
 
-        // Only admins and scrum masters are allowed beyond this point
-        if (eRole < Role.E_MASTER)
-            return E_CONSUMED;
 
         switch (s)
         {
@@ -181,6 +184,12 @@ public final class SlashCommand
                 {
                     s = "Server> Error setting company for user \"" + as[1] + "\"\n";
                 }
+                break;
+            case "/logout":
+                LogoutHandler.handle(pUser);
+                return E_CONSUMED;
+            case "/whoisin":
+                WhoIsInHandler.handle(pUser);
                 break;
             default:
                 s = "Server> Valid commands: /adduser /deluser /setrole /t\n";
