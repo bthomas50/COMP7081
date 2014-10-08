@@ -1,9 +1,12 @@
 package server;
 
+import java.io.BufferedReader;
 import server.Roles.RoleFactory;
 import server.Roles.Role;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.concurrent.Callable;
 
 /**
  * The User object holds all relevant data and threads for a single user.
@@ -13,31 +16,31 @@ import java.io.ObjectOutputStream;
 public class User {
 
     //Basic properties of a user
-    private String userID;
-    private String password;
+    private final String userID;
+    private final String password;
     private Role role;
-    private String team;
-    private UserThread ut;
+    private String teamName;
+    private final UserCallable ut;
 
     /**
      * Constructor userID - unique string identifying each user role - true if
      * user is administrator
      */
-    User(String userID, String passHash, String role, String teamName, ObjectInputStream sInput, ObjectOutputStream sOutput, Server server) {
+    public User(String userID, String passHash, String role, String teamName, BufferedReader sInput, PrintWriter sOutput, Server server) {
 
         this.userID = userID;
         this.password = passHash;
         this.role = RoleFactory.createRole(role, this);
-        this.team = teamName;
+        this.teamName = teamName;
         
-        runUserThread(sInput, sOutput, server);
+        this.ut = new UserCallable(this, sInput, sOutput, server);
+        ut.writeMsg("You are connected as " + userID + '\n');
     }
 
-    private void runUserThread(ObjectInputStream sInput, ObjectOutputStream sOutput, Server server) {
-        ut = new UserThread(this, sInput, sOutput, server);
-        ut.start();
+    public UserCallable getUserThread(){
+        return ut;
     }
-
+    
     public void closeUserThread() {
         ut.close();
     }
@@ -60,24 +63,16 @@ public class User {
         role = r;
     }
 
-    public String getTeam() {
-        return team;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setTeam(String teamName) {
-        team = teamName;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
     
     public String getPassword() {
         return password;
-    }
-
-    private void changeID(String newID) {
-        this.userID = newID;
-    }
-
-    private void changeRole(Role newRole) {
-        this.role = newRole;
     }
     
     public boolean sendMessage(String message)
@@ -90,8 +85,8 @@ public class User {
         return ut.getServer();
     }
 
-    public Object getCompany()
+    public String getCompany()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException();
     }
 }

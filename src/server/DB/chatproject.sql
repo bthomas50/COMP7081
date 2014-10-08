@@ -41,8 +41,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `password`, `role`, `team`, `company`) VALUES
-('admin', md5('password'), 'admin', '', ''),
-('user', md5('password'), 'user', '', '');
+('admin', md5('password'), 'admin', 'null', ''),
+('user', md5('password'), 'user', 'null', '');
 
 --
 -- Indexes for dumped tables

@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 
-package server;
+package server.MsgHandlers;
 
 import java.sql.Connection;
 import server.DB.DB;
 import server.DB.Users;
+import server.Server;
+import server.Team;
+import server.User;
 
 /**
  *
@@ -16,8 +19,7 @@ import server.DB.Users;
  */
 public class SetTeamHandler
 {
-
-    static void handle(User pUser, String username, String newTeamName) throws Exception
+    public static void handle(User pUser, String username, String newTeamName) throws Exception
     {
         if(pUser.getRole().canSetTeam(username, newTeamName))
         {
@@ -34,7 +36,7 @@ public class SetTeamHandler
                 return;
             }
             //the team should always exist
-            Team oldTeam = s.getTeam(oldUser.getTeam());
+            Team oldTeam = s.getTeam(oldUser.getTeamName());
             if(oldTeam == null)
             {
                 throw new Error("User online but their team isn't.");
@@ -46,7 +48,7 @@ public class SetTeamHandler
                 s.removeTeam(oldTeam);
             }
             //add them to the new team
-            oldUser.setTeam(newTeamName);
+            oldUser.setTeamName(newTeamName);
             Team newTeam = s.getTeam(newTeamName);
             if(newTeam == null)
             {
