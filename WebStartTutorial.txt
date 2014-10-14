@@ -1,0 +1,53 @@
+HOW TO DEPLOY THE APPLICATION TO THE WEB:
+
+<<Assuming that you have apache installed>>
+
+1: In XAMPP control panel, click Apache - Config - select Apache (httpd.conf)
+
+2: Scroll down to find 
+<IfModule mime_module>
+...(many lines)...
+</IfModule>
+
+3: Inside the <IfModule mime_module></IfModule> tag, add the following lines:
+
+    AddType application/x-java-jnlp-file .jnlp
+    AddType application/x-java-archive .jar
+    AddType application/x-java-archive-diff .jardiff
+	
+4: Restart Apache
+
+
+5: In Netbeans, drop down the run configurations menu and click Customize...
+
+6: Create a new configuration - called WebStart or something.
+
+7: Set the Main Class to client.ClientGUI
+
+8: Check Run with Java Web Start
+
+9: In the left window, go to Application -> Web Start
+
+10: Check Enable Web Start
+
+11: Set Codebase to User defined
+
+12: Type http://localhost/ChatProject in Codebase preview
+
+13: Select the Application descriptor radio button
+
+14: Hit ok.
+
+
+15: Select the new WebStart configuration
+
+16: Clean and Build the project
+
+17: Go to <project-location>/dist
+
+18: Grab everything and copy them into C:/xampp/htdocs/ChatProject
+
+
+19: In a web browser, navigate to http://localhost/ChatProject/launch.html
+
+20: Click on the java icon to run the program!
