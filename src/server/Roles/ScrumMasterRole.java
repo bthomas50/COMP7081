@@ -23,34 +23,34 @@ public class ScrumMasterRole implements Role
     @Override
     public boolean canSetTeam(String username, String newTeam)
     {
-        //this method isn't fully implemented yet - needs UserData to work properly.
+        //don't use
         return false;
     }
 
     @Override
     public boolean canSetCompany(String username, String newCompany)
     {
-        //this method isn't fully implemented yet - needs UserData to work properly.
+        //don't use
         return false;
     }
     @Override
     public boolean canAddUser(String team)
     {
-        //this method isn't fully implemented yet - needs UserData to work properly.
+        //works kinda
         return user.getTeamName().equals(team);
     }
 
     @Override
     public boolean canRemoveUser(String team)
     {
-        //this method isn't fully implemented yet - needs UserData to work properly.
+        //works
         return user.getTeamName().equals(team);
     }
 
     @Override
     public boolean canChangeRole(String team, String newRole)
     {
-        //this method isn't fully implemented yet - needs UserData to work properly.
+        //maybe use this
         return compareTo(newRole) > 0 && 
             user.getTeamName().equals(team);
     }
@@ -140,11 +140,18 @@ public class ScrumMasterRole implements Role
 
     @Override
     public boolean canSetTeam(UserData oldUD, UserData newUD) {
-        return false;
+        //Has to test old team to check if user is on no team
+        //or if user is already on a team.  If so, disallow this action
+        if(oldUD.getTeam().equals("") && newUD.getTeam().equals(user.getTeamName())) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
     public boolean canSetCompany(UserData ud, UserData newCompName) {
+        //Same thing as canSetTeam(..), except with company name
         return false;
     }
 
