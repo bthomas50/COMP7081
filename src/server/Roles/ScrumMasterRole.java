@@ -7,6 +7,7 @@
 package server.Roles;
 
 import server.User;
+import server.UserData;
 
 /**
  *
@@ -92,10 +93,59 @@ public class ScrumMasterRole implements Role
         }
     }
 
+    public int compareTo(Role r)
+    {
+        switch(r.toString())
+        {
+            case ANONYMOUS:
+                return 1;
+            case USER:
+                return 1;
+            case DEVELOPER:
+                return 1;
+            case SCRUM_MASTER:
+                return 0;
+            case ADMINISTRATOR:
+                return -1;
+            default:
+                return -1;
+        }
+    }
     @Override
     public int getEnum()
     {
         return Role.E_MASTER;
+    }
+
+    @Override
+    public boolean canAddUser(UserData ud) {
+        return user.getUD().getTeam().equals(ud.getTeam());
+    }
+
+    @Override
+    public boolean canRemoveUser(UserData ud) {
+        return user.getUD().getTeam().equals(ud.getTeam());
+    }
+
+    @Override
+    public boolean canChangeRole(UserData oldUD, UserData newUD) {
+        return compareTo(oldUD.getRole()) > 0 && 
+            user.getUD().getTeam().equals(newUD.getTeam());
+    }
+
+    @Override
+    public boolean canTeamChat(UserData ud) {
+        return true;
+    }
+
+    @Override
+    public boolean canSetTeam(UserData oldUD, UserData newUD) {
+        return false;
+    }
+
+    @Override
+    public boolean canSetCompany(UserData ud, UserData newCompName) {
+        return false;
     }
 
 }

@@ -6,6 +6,8 @@
 
 package server.Roles;
 
+import server.UserData;
+
 /**
  *
  * @author Brian
@@ -63,6 +65,36 @@ public class AnonRole implements Role
     public int getEnum()
     {
         return Role.E_ANON;
+    }
+
+    @Override
+    public boolean canAddUser(UserData ud) {
+        return false;
+    }
+
+    @Override
+    public boolean canRemoveUser(UserData ud) {
+        return false;
+    }
+
+    @Override
+    public boolean canChangeRole(UserData oldUD, UserData newUD) {
+        return false;
+    }
+
+    @Override
+    public boolean canTeamChat(UserData ud) {
+        return false;
+    }
+
+    @Override
+    public boolean canSetTeam(UserData oldUD, UserData newUD) {
+        return false;
+    }
+
+    @Override
+    public boolean canSetCompany(UserData ud, UserData newCompName) {
+        return false;
     }
     
 }

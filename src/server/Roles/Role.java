@@ -6,6 +6,8 @@
 
 package server.Roles;
 
+import server.UserData;
+
 /**
  *
  * @author Brian
@@ -39,4 +41,11 @@ public interface Role extends Comparable<String>
     public boolean canSetTeam(String username, String newTeam);
 
     public boolean canSetCompany(String username, String newCompany);
+    
+    boolean canAddUser(UserData ud);
+    boolean canRemoveUser(UserData ud);
+    boolean canChangeRole(UserData oldUD, UserData newUD);
+    boolean canTeamChat(UserData ud);
+    public boolean canSetTeam(UserData oldUD, UserData newUD);
+    public boolean canSetCompany(UserData ud, UserData newCompName);
 }
