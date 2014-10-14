@@ -6,6 +6,8 @@
 
 package server.Roles;
 
+import server.UserData;
+
 /**
  *
  * @author Brian
@@ -86,4 +88,34 @@ public class AdminRole implements Role
         return Role.E_ADMIN;
     }
 
+    @Override
+    public boolean canAddUser(UserData ud) {
+        return true;
+    }
+    
+    @Override
+    public boolean canRemoveUser(UserData ud) {
+        return true;
+    }
+    
+    @Override
+    public boolean canChangeRole(UserData oldUD, UserData newUD) {
+        return true;
+    }
+    
+    @Override
+    public boolean canTeamChat(UserData ud) {
+        return true;
+    }
+    
+    @Override
+    public boolean canSetTeam(UserData oldUD, UserData newUD) {
+        return true;
+    }
+    
+    @Override
+    public boolean canSetCompany(UserData ud, UserData newCompName) {
+        return true;
+    }
+    
 }
