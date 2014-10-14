@@ -45,7 +45,6 @@ public class ClientLoginDialog extends javax.swing.JDialog
         jbCancel = new javax.swing.JButton();
 
         setTitle("Quick Login");
-        setAlwaysOnTop(true);
         setModal(true);
         setResizable(false);
 

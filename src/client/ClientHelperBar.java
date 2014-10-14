@@ -50,12 +50,12 @@ public class ClientHelperBar extends JPanel implements ActionListener
         this.add(m_jbCompany);
         this.add(m_jchkTC);
 
-        m_dlgQLogin = new ClientLoginDialog(pParent, true);
-        m_dlgAdd = new ClientAddUserDialog(pParent, true);
-        m_dlgDel = new ClientDelUserDialog(pParent, true);
-        m_dlgRole = new ClientSetRoleDialog(pParent, true);
-        m_dlgTeam = new ClientSetTeamDialog(pParent, true);
-        m_dlgCompany = new ClientSetCompanyDialog(pParent, true);
+        m_dlgQLogin = new ClientLoginDialog(pParent, false);
+        m_dlgAdd = new ClientAddUserDialog(pParent, false);
+        m_dlgDel = new ClientDelUserDialog(pParent, false);
+        m_dlgRole = new ClientSetRoleDialog(pParent, false);
+        m_dlgTeam = new ClientSetTeamDialog(pParent, false);
+        m_dlgCompany = new ClientSetCompanyDialog(pParent, false);
     }
 
     @Override

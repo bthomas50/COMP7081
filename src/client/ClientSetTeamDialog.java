@@ -45,7 +45,6 @@ public class ClientSetTeamDialog extends javax.swing.JDialog
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Change User's Team");
-        setAlwaysOnTop(true);
         setModal(true);
         setResizable(false);
 
