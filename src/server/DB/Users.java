@@ -21,18 +21,16 @@ public final class Users
         SUCCESS, INCORRECT_PASSWORD, NO_SUCH_USER
     }
     private static final String tableName = "users";
-    private static final String addUser = "INSERT INTO " + tableName + " VALUES(?,?,?,?,?)";
+    private static final String addUser = "INSERT INTO " + tableName + " VALUES(?,?,?,?)";
     private static final String removeUser = "DELETE FROM " + tableName + " WHERE user_id = ?";
     //getters
     private static final String getPassword = "SELECT password FROM " + tableName + " WHERE user_id = ?";
     private static final String getRole = "SELECT role FROM " + tableName + " WHERE user_id = ?";
     private static final String getTeam = "SELECT team FROM " + tableName + " WHERE user_id = ?";
-    private static final String getCompany = "SELECT company FROM " + tableName + " WHERE user_id = ?";
     private static final String getAll = "SELECT * FROM " + tableName + " WHERE user_id = ?";
     //setters
     private static final String setRole = "UPDATE " + tableName + " SET role = ? WHERE user_id = ?";
     private static final String setTeam = "UPDATE " + tableName + " SET team = ? WHERE user_id = ?";
-    private static final String setCompany = "UPDATE " + tableName + " SET company = ? WHERE user_id = ?";
     
 
     public static PwdResult getPassword(Connection conn, String username, String passHash) throws SQLException
@@ -94,7 +92,7 @@ public final class Users
         }
     }
 
-    public static void addUser(Connection conn, String username, String passHash, String role, String team, String company) throws SQLException
+    public static void addUser(Connection conn, String username, String passHash, String role, String team) throws SQLException
     {
         try (PreparedStatement stmt = conn.prepareStatement(addUser))
         {
@@ -102,7 +100,6 @@ public final class Users
             stmt.setString(2, passHash);
             stmt.setString(3, role);
             stmt.setString(4, team);
-            stmt.setString(5, company);
 
             if (stmt.executeUpdate() == 0)
                 throw new SQLException("user already exists");
@@ -131,33 +128,6 @@ public final class Users
                 throw new SQLException("team does not exist");
         }
     }
-
-    public static String getCompany(Connection conn, String username) throws SQLException
-    {
-        try (PreparedStatement stmt = conn.prepareStatement(getCompany))
-        {
-            stmt.setString(1, username);
-            ResultSet rs = stmt.executeQuery();
-            if(!rs.next())
-            {
-                throw new SQLException("user does not exist");
-            }
-            return rs.getString(1);
-        }   
-    }
-    
-    
-    public static void setCompany(Connection conn, String username, String newCompany) throws SQLException
-    {
-        try (PreparedStatement stmt = conn.prepareStatement(setCompany))
-        {
-            stmt.setString(1, newCompany);
-            stmt.setString(2, username);
-            
-            if (stmt.executeUpdate() == 0)
-                throw new SQLException("company does not exist");
-        }
-    }
     
     public static UserData getDummyUserData(Connection conn, String username) throws SQLException
     {
@@ -170,7 +140,7 @@ public final class Users
             if(!rs.next())
                 throw new SQLException("user does not exist");
             
-            return UserData.createDummyUserData(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+            return UserData.createDummyUserData(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
         }
     }
     

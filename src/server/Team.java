@@ -11,9 +11,18 @@ public class Team {
     
     private ArrayList<User> teamMembers;
     private String teamName;
-
-    public Team(String teamName) {
+    private String companyName;
+    
+    public Team(String teamName) 
+    {
         this.teamName = teamName;
+        this.teamMembers = new ArrayList<>();
+    }
+    
+    public Team(String teamName, String companyName)
+    {
+        this.teamName = teamName;
+        this.companyName = companyName;
         this.teamMembers = new ArrayList<>();
     }
     
@@ -53,5 +62,10 @@ public class Team {
 
     public ArrayList<User> getTeamMembers() {
         return teamMembers;
+    }
+
+    public String getCompanyName()
+    {
+        return companyName;
     }
 }

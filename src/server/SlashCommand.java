@@ -93,19 +93,13 @@ public final class SlashCommand
                         
                         if (l == 4)
                         {
-                            AddUserHandler.handle(pUser, as[1], as[2], sNewRole, "", "");
-                        }
-                        else if (l == 5)
-                        {
-                            as[4] = as[4].equals("null") ? "" : as[4].toLowerCase();
-                            
-                            AddUserHandler.handle(pUser, as[1], as[2], sNewRole, as[4], "");
+                            AddUserHandler.handle(pUser, as[1], as[2], sNewRole, "");
                         }
                         else
                         {
                             as[4] = as[4].equals("null") ? "" : as[4].toLowerCase();
 
-                            AddUserHandler.handle(pUser, as[1], as[2], sNewRole, as[4], as[5].toLowerCase());
+                            AddUserHandler.handle(pUser, as[1], as[2], sNewRole, as[4]);
                         }
 
                         s = "Server> User \"" + as[1] + "\" added with role \"" + sNewRole + "\"\n";

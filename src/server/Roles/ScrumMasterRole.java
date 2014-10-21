@@ -6,6 +6,7 @@
 
 package server.Roles;
 
+import server.TeamData;
 import server.User;
 import server.UserData;
 
@@ -84,7 +85,7 @@ public class ScrumMasterRole implements Role
     }
 
     @Override
-    public boolean canSetCompany(UserData oldUD, UserData newUD) {
+    public boolean canSetCompany(TeamData oldTD, TeamData newTD) {
         //Same thing as canSetTeam(..), except with company name
         return false;
     }
