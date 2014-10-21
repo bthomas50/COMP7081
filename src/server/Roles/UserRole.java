@@ -6,6 +6,7 @@
 
 package server.Roles;
 
+import server.TeamData;
 import server.User;
 import server.UserData;
 
@@ -66,7 +67,7 @@ public class UserRole implements Role
     }
 
     @Override
-    public boolean canSetCompany(UserData ud, UserData newCompName) {
+    public boolean canSetCompany(TeamData oldTD, TeamData newTD) {
         return false;
     }
 

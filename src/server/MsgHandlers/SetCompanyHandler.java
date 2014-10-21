@@ -8,9 +8,9 @@ package server.MsgHandlers;
 
 import java.sql.Connection;
 import server.DB.DB;
-import server.DB.Users;
+import server.DB.Teams;
+import server.TeamData;
 import server.User;
-import server.UserData;
 
 /**
  *
@@ -19,16 +19,17 @@ import server.UserData;
 public class SetCompanyHandler
 {
 
-    public static void handle(User pUser, String username, String newCompany) throws Exception
+    public static void handle(User pUser, String teamName, String newCompany) throws Exception
     {
         try(Connection conn = DB.connect())
         {
-            UserData oldUD = Users.getDummyUserData(conn, username);
-            UserData newUD = new UserData(oldUD);
-            //newUD.setCompany(newCompany);
-            if(pUser.getRole().canSetCompany(oldUD, newUD))
+            TeamData oldTD = Teams.getTeamData(conn, teamName);
+            TeamData newTD = new TeamData(oldTD);
+            newTD.setCompanyName(newCompany);
+            if(pUser.getRole().canSetCompany(oldTD, newTD))
             {
-                Users.setCompany(conn, username, newCompany);
+                Teams.setCompany(conn, teamName, newCompany);
+                conn.close();
             }
             else throw new Exception("Insufficient permission");
         }

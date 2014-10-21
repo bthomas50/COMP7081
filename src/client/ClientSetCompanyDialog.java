@@ -37,22 +37,22 @@ public class ClientSetCompanyDialog extends javax.swing.JDialog
     {
 
         jLabel1 = new javax.swing.JLabel();
-        jtxtName = new javax.swing.JTextField();
+        jtxtTeam = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jtxtCompany = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jbCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Change User's Company");
+        setTitle("Assign Team to Company");
         setModal(true);
         setResizable(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("User Name:");
+        jLabel1.setText("Team:");
 
-        jtxtName.setName(""); // NOI18N
-        jtxtName.setPreferredSize(new java.awt.Dimension(100, 19));
+        jtxtTeam.setName(""); // NOI18N
+        jtxtTeam.setPreferredSize(new java.awt.Dimension(100, 19));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("New Company:");
@@ -90,7 +90,7 @@ public class ClientSetCompanyDialog extends javax.swing.JDialog
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtxtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -107,7 +107,7 @@ public class ClientSetCompanyDialog extends javax.swing.JDialog
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jtxtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jtxtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -129,15 +129,15 @@ public class ClientSetCompanyDialog extends javax.swing.JDialog
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sName = jtxtName.getText().trim().split("\\s+")[0];
-        if (sName.length() == 0) return;
+        String sTeam = jtxtTeam.getText().trim().split("\\s+")[0];
+        if (sTeam.length() == 0) return;
         
         String sCompany = jtxtCompany.getText().trim().split("\\s+")[0];
 
         if (sCompany.length() > 0)
-            m_pParent.tf.setText("/setcompany " + sName + ' ' + sCompany);
+            m_pParent.tf.setText("/setcompany " + sTeam + ' ' + sCompany);
         else
-            m_pParent.tf.setText("/setcompany " + sName);
+            m_pParent.tf.setText("/setcompany " + sTeam);
         
         m_pParent.actionPerformed(new ActionEvent(m_pParent.tf, ActionEvent.ACTION_FIRST-1, null));
         this.setVisible(false);
@@ -208,6 +208,6 @@ public class ClientSetCompanyDialog extends javax.swing.JDialog
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbCancel;
     private javax.swing.JTextField jtxtCompany;
-    private javax.swing.JTextField jtxtName;
+    private javax.swing.JTextField jtxtTeam;
     // End of variables declaration//GEN-END:variables
 }

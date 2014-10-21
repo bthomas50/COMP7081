@@ -37,21 +37,20 @@ public class Login
     {
         PrintWriter sOutput = new PrintWriter(sock.getOutputStream());
         BufferedReader sInput = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-        User loggedInUser = new User("Anonymous", "", "", "", "", sInput, sOutput, server);
+        User loggedInUser = new User("Anonymous", "", "", "", sInput, sOutput, server);
         try
         {
             //block until we get a message.
             String msg = sInput.readLine();
             String[] strs = msg.split(" ");
             Connection conn = DB.connect();
-            if(strs.length > 2 && 
+            if(strs.length >= 2 && 
                Users.getPassword(conn, strs[0], Util.mySQLCompatibleMD5(strs[1])) == Users.PwdResult.SUCCESS)
             {
                     loggedInUser =  new User(strs[0],
                                              strs[1],
                                              Users.getRole(conn, strs[0]),
                                              Users.getTeam(conn, strs[0]),
-                                             Users.getCompany(conn, strs[0]),
                                              sInput, sOutput, server);
             }
             conn.close();

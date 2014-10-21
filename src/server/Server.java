@@ -52,6 +52,8 @@ public class Server
         //Hashmap for list of teams
         teamMap = new HashMap<>();
         
+        companyMap = new HashMap<>();
+        
         userListener = new AsyncListener();
     }
 
@@ -162,6 +164,12 @@ public class Server
         }
     }
 
+    public synchronized void companyBroadcast(String company, String message) {
+        for (Team t : companyMap.get(company).getTeamMembers())
+        {
+            teamBroadcast(t.getTeamName(), message);
+        }
+    }
     // Broadcast a message to all clients in the same team
     public synchronized void teamBroadcast(String team, String message)
     {
@@ -271,6 +279,7 @@ public class Server
     public void addUser(User loggedInUser)
     {
         userMap.put(loggedInUser.getUserID(), loggedInUser);
+        userListener.addUser(loggedInUser);
     }
 
     public void addCompany(Company existingCompany)
