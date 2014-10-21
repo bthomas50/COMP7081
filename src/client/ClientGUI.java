@@ -208,7 +208,7 @@ public class ClientGUI extends JFrame implements ActionListener {
             {
                 BasicService jnlp = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
                 URL codeBase = jnlp.getCodeBase();
-                new ClientGUI(codeBase.toString(), 1500);
+                new ClientGUI(codeBase.getHost(), 1500);
             }
             catch(Throwable ex)
             {
