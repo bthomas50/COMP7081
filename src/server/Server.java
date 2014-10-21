@@ -26,6 +26,8 @@ public class Server
     private boolean keepGoing;
     // Hashmap contains the Team objects currently being used
     private HashMap<String, Team> teamMap;
+   // hashmap contains the Company objects currently being used.
+    private HashMap<String, Company> companyMap;
 
 
     /*
@@ -77,27 +79,7 @@ public class Server
                 }
                 synchronized (this)
                 {
-                    User toLogin = Login.loginUser(this, socket);
-                    if (!userMap.containsKey(toLogin.getUserID()))
-                    {
-                        userMap.put(toLogin.getUserID(), toLogin);// save it in the map
-                        broadcast(toLogin.getUserID() + " has connected " + " as " + toLogin.getRole());
-                        if (teamMap.containsKey(toLogin.getTeamName()))
-                        {
-                            teamMap.get(toLogin.getTeamName()).addUser(toLogin);
-                        } else
-                        {
-                            Team newTeam = new Team(toLogin.getTeamName());
-                            teamMap.put(newTeam.getTeamName(), newTeam);
-                            newTeam.addUser(toLogin);
-                        }
-                        userListener.addUser(toLogin);
-                    } else
-                    {
-                        toLogin.sendMessage("Already logged in.\n");
-                        toLogin.closeUserThread();
-                    }
-
+                    Login.loginUser(this, socket);
                 }
             }
             // I was asked to stop
@@ -284,5 +266,20 @@ public class Server
             display("Warning: removing a team with users in it.");
         }
         teamMap.remove(t.getTeamName());
+    }
+
+    public void addUser(User loggedInUser)
+    {
+        userMap.put(loggedInUser.getUserID(), loggedInUser);
+    }
+
+    public void addCompany(Company existingCompany)
+    {
+        companyMap.put(existingCompany.getCompanyName(), existingCompany);
+    }
+
+    public Company getCompany(String companyName)
+    {
+        return companyMap.get(companyName);
     }
 }
