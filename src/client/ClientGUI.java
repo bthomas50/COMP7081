@@ -3,6 +3,10 @@ package client;
 import common.ChatMessage;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
+import javax.jnlp.BasicService;
+import javax.jnlp.ServiceManager;
+import javax.jnlp.UnavailableServiceException;
 import javax.swing.*;
 
 
@@ -200,6 +204,16 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 	// to start the whole thing the server
 	public static void main(String[] args) {
+            try
+            {
+                BasicService jnlp = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
+                URL codeBase = jnlp.getCodeBase();
+                new ClientGUI(codeBase.getHost(), 1500);
+            }
+            catch(Throwable ex)
+            {
+                System.err.println("Not running as a web start app");
 		new ClientGUI("localhost", 1500);
+            }
 	}
 }

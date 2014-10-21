@@ -12,7 +12,7 @@ import server.UserData;
  *
  * @author Brian
  */
-public interface Role extends Comparable<String>
+public interface Role extends Comparable<Role>
 {
     public static final String ANONYMOUS = "anon";
     public static final String USER = "user";
@@ -28,24 +28,17 @@ public interface Role extends Comparable<String>
     
     public static final String[] AS_ROLENAMES = {ANONYMOUS, USER, DEVELOPER, SCRUM_MASTER, ADMINISTRATOR};
     
-    boolean canAddUser(String team);
-    boolean canRemoveUser(String team);
-    boolean canChangeRole(String team, String newRole);
-    boolean canTeamChat(String team);
-    boolean canAllChat();
     @Override
     String toString();
     
     int getEnum();
 
-    public boolean canSetTeam(String username, String newTeam);
-
-    public boolean canSetCompany(String username, String newCompany);
     
+    boolean canTeamChat(String teamName);
+    boolean canAllChat();
     boolean canAddUser(UserData ud);
     boolean canRemoveUser(UserData ud);
     boolean canChangeRole(UserData oldUD, UserData newUD);
-    boolean canTeamChat(UserData ud);
     public boolean canSetTeam(UserData oldUD, UserData newUD);
-    public boolean canSetCompany(UserData ud, UserData newCompName);
+    public boolean canSetCompany(UserData oldUD, UserData newUD);
 }

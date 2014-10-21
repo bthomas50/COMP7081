@@ -1,5 +1,6 @@
 package server;
 
+import server.MsgHandlers.LogoutHandler;
 import server.MsgHandlers.SetTeamHandler;
 import server.MsgHandlers.RemoveUserHandler;
 import server.MsgHandlers.SetCompanyHandler;
@@ -111,7 +112,7 @@ public final class SlashCommand
                     }
                     catch (Exception ex)
                     {
-                        s = "Server> Error adding user \"" + as[1] + "\"\n";
+                        s = "Server> Error adding user \"" + as[1] + "\" - message: " + ex.getMessage() + "\n";
                     }
                 }
                 break;
@@ -130,7 +131,7 @@ public final class SlashCommand
                     }
                     catch (Exception ex)
                     {
-                        s = "Server> Error deleting user \"" + as[1] + "\"\n";
+                        s = "Server> Error deleting user \"" + as[1] + "\" - message: " + ex.getMessage() + "\n";
                     }
                 }
                 break;
@@ -151,7 +152,7 @@ public final class SlashCommand
                     }
                     catch (Exception ex)
                     {
-                        s = "Server> Error setting role for user \"" + as[1] + "\"\n";
+                        s = "Server> Error setting role for user \"" + as[1] + "\" - message: " + ex.getMessage() + "\n";
                     }
                 }
                 break;
@@ -170,7 +171,7 @@ public final class SlashCommand
                 }
                 catch (Exception ex)
                 {
-                    s = "Server> Error setting team for user \"" + as[1] + "\"\n";
+                    s = "Server> Error setting team for user \"" + as[1] + "\" - message: " + ex.getMessage() + "\n";
                 }
                 break;
             case "/setcompany":
@@ -188,7 +189,7 @@ public final class SlashCommand
                 }
                 catch (Exception ex)
                 {
-                    s = "Server> Error setting company for user \"" + as[1] + "\"\n";
+                    s = "Server> Error setting company for user \"" + as[1] + "\" - message: " + ex.getMessage() + "\n";
                 }
                 break;
             case "/logout":

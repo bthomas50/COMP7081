@@ -21,7 +21,7 @@ public class RemoveUserHandler
     {
         Connection conn;
         conn = DB.connect();
-        if(user.getRole().canRemoveUser(Users.getTeam(conn, name)))
+        if(user.getRole().canRemoveUser(Users.getDummyUserData(conn, name)))
         {
             Users.removeUser(conn, name);
             conn.close();

@@ -19,11 +19,11 @@ public class RoleFactory
         switch(role)
         {
             case Role.USER:
-                return new UserRole();
+                return new UserRole(user);
             case Role.ADMINISTRATOR:
                 return new AdminRole();
             case Role.DEVELOPER:
-                return new DevRole();
+                return new DevRole(user);
             case Role.SCRUM_MASTER:
                 return new ScrumMasterRole(user);
             default:

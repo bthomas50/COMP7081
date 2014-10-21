@@ -5,9 +5,6 @@ import java.io.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 /*
  * The server that can be run both as a console application or a GUI
@@ -29,7 +26,8 @@ public class Server
     private boolean keepGoing;
     // Hashmap contains the Team objects currently being used
     private HashMap<String, Team> teamMap;
-
+    
+    private HashMap<String, Company> compMap;
 
     /*
      *  server constructor that receive the port to listen to for connection as parameter
@@ -52,6 +50,8 @@ public class Server
         userMap = new HashMap<>();
         //Hashmap for list of teams
         teamMap = new HashMap<>();
+        
+        compMap = new HashMap<>();
         
         userListener = new AsyncListener();
     }
@@ -183,6 +183,13 @@ public class Server
         }
     }
 
+    public synchronized void companyBroadcast(String company, String message) {
+        //calls each team in a company
+        for (Iterator<Team> iter = compMap.getClass(company).getTeams().iterator() ; iter.hasNext();) {
+            Team t = iter.next();
+            teamBroadcast(t.getTeamName(), message);
+        }
+    }
     // Broadcast a message to all clients in the same team
     public synchronized void teamBroadcast(String team, String message)
     {

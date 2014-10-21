@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import server.Team;
+import server.UserData;
 
 /**
  * Handles queries relevant to a user
@@ -26,10 +27,13 @@ public final class Users
     private static final String getPassword = "SELECT password FROM " + tableName + " WHERE user_id = ?";
     private static final String getRole = "SELECT role FROM " + tableName + " WHERE user_id = ?";
     private static final String getTeam = "SELECT team FROM " + tableName + " WHERE user_id = ?";
+    private static final String getCompany = "SELECT company FROM " + tableName + " WHERE user_id = ?";
+    private static final String getAll = "SELECT * FROM " + tableName + " WHERE user_id = ?";
     //setters
     private static final String setRole = "UPDATE " + tableName + " SET role = ? WHERE user_id = ?";
     private static final String setTeam = "UPDATE " + tableName + " SET team = ? WHERE user_id = ?";
     private static final String setCompany = "UPDATE " + tableName + " SET company = ? WHERE user_id = ?";
+    
 
     public static PwdResult getPassword(Connection conn, String username, String passHash) throws SQLException
     {
@@ -128,6 +132,21 @@ public final class Users
         }
     }
 
+    public static String getCompany(Connection conn, String username) throws SQLException
+    {
+        try (PreparedStatement stmt = conn.prepareStatement(getCompany))
+        {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if(!rs.next())
+            {
+                throw new SQLException("user does not exist");
+            }
+            return rs.getString(1);
+        }   
+    }
+    
+    
     public static void setCompany(Connection conn, String username, String newCompany) throws SQLException
     {
         try (PreparedStatement stmt = conn.prepareStatement(setCompany))
@@ -139,4 +158,21 @@ public final class Users
                 throw new SQLException("company does not exist");
         }
     }
+    
+    public static UserData getDummyUserData(Connection conn, String username) throws SQLException
+    {
+        try (PreparedStatement stmt = conn.prepareStatement(getAll))
+        {
+            stmt.setString(1, username);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(!rs.next())
+                throw new SQLException("user does not exist");
+            
+            return UserData.createDummyUserData(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+        }
+    }
+    
+    
 }

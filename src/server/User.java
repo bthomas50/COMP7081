@@ -3,10 +3,7 @@ package server;
 import java.io.BufferedReader;
 import server.Roles.RoleFactory;
 import server.Roles.Role;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.util.concurrent.Callable;
 
 /**
  * The User object holds all relevant data and threads for a single user.
@@ -27,13 +24,13 @@ public class User {
      * Constructor userID - unique string identifying each user role - true if
      * user is administrator
      */
-    public User(String userID, String passHash, String role, String teamName, BufferedReader sInput, PrintWriter sOutput, Server server) {
+    public User(String userID, String passHash, String role, String teamName, String companyName, BufferedReader sInput, PrintWriter sOutput, Server server) {
 
 //        this.userID = userID;
 //        this.password = passHash;
 //        this.role = RoleFactory.createRole(role, this);
 //        this.teamName = teamName;
-        this.ud = new UserData(userID, passHash, RoleFactory.createRole(role, this), teamName);
+        this.ud = new UserData(userID, passHash, RoleFactory.createRole(role, this), teamName, companyName);
         
         this.ut = new UserCallable(this, sInput, sOutput, server);
         ut.writeMsg("You are connected as " + userID + '\n');

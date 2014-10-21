@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package server.Roles;
 
 import server.UserData;
@@ -14,48 +13,13 @@ import server.UserData;
  */
 public class AdminRole implements Role
 {
-    @Override
-    public boolean canSetTeam(String username, String newTeam)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean canSetCompany(String username, String newCompany)
-    {
-        return true;
-    }
-    
-    @Override
-    public boolean canAddUser(String team)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean canRemoveUser(String team)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean canChangeRole(String team, String newRole)
-    {
-        return compareTo(newRole) >= 0;
-    }
-    
-    @Override
-    public boolean canTeamChat(String team)
-    {
-        return true;
-    }
 
     @Override
     public boolean canAllChat()
     {
         return true;
     }
-    
+
     @Override
     public String toString()
     {
@@ -63,23 +27,9 @@ public class AdminRole implements Role
     }
 
     @Override
-    public int compareTo(String o)
+    public int compareTo(Role o)
     {
-        switch(o)
-        {
-            case ANONYMOUS:
-                return 1;
-            case USER:
-                return 1;
-            case DEVELOPER:
-                return 1;
-            case SCRUM_MASTER:
-                return 1;
-            case ADMINISTRATOR:
-                return 0;
-            default:
-                return -1;
-        }
+        return getEnum() - o.getEnum();
     }
 
     @Override
@@ -89,33 +39,39 @@ public class AdminRole implements Role
     }
 
     @Override
-    public boolean canAddUser(UserData ud) {
+    public boolean canAddUser(UserData ud)
+    {
         return true;
     }
-    
+
     @Override
-    public boolean canRemoveUser(UserData ud) {
+    public boolean canRemoveUser(UserData ud)
+    {
         return true;
     }
-    
+
     @Override
-    public boolean canChangeRole(UserData oldUD, UserData newUD) {
+    public boolean canChangeRole(UserData oldUD, UserData newUD)
+    {
         return true;
     }
-    
+
     @Override
-    public boolean canTeamChat(UserData ud) {
+    public boolean canTeamChat(String teamName)
+    {
         return true;
     }
-    
+
     @Override
-    public boolean canSetTeam(UserData oldUD, UserData newUD) {
+    public boolean canSetTeam(UserData oldUD, UserData newUD)
+    {
         return true;
     }
-    
+
     @Override
-    public boolean canSetCompany(UserData ud, UserData newCompName) {
+    public boolean canSetCompany(UserData ud, UserData newCompName)
+    {
         return true;
     }
-    
+
 }
