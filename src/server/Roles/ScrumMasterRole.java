@@ -15,56 +15,22 @@ import server.UserData;
  */
 public class ScrumMasterRole implements Role
 {
-    User user;
+    private final User user;
     public ScrumMasterRole(User u)
     {
         user = u;
     }
-    @Override
-    public boolean canSetTeam(String username, String newTeam)
-    {
-        //don't use
-        return false;
-    }
-
-    @Override
-    public boolean canSetCompany(String username, String newCompany)
-    {
-        //don't use
-        return false;
-    }
-    @Override
-    public boolean canAddUser(String team)
-    {
-        //works kinda
-        return user.getTeamName().equals(team);
-    }
-
-    @Override
-    public boolean canRemoveUser(String team)
-    {
-        //works
-        return user.getTeamName().equals(team);
-    }
-
-    @Override
-    public boolean canChangeRole(String team, String newRole)
-    {
-        //maybe use this
-        return compareTo(newRole) > 0 && 
-            user.getTeamName().equals(team);
-    }
     
     @Override
-    public boolean canTeamChat(String team)
+    public boolean canTeamChat(String teamName)
     {
-        return true;
+        return teamName.equals(user.getTeamName());
     }
 
     @Override
     public boolean canAllChat()
     {
-        return false;
+        return true;
     }
     
     @Override
@@ -74,42 +40,9 @@ public class ScrumMasterRole implements Role
     }
 
     @Override
-    public int compareTo(String o)
+    public int compareTo(Role other)
     {
-        switch(o)
-        {
-            case ANONYMOUS:
-                return 1;
-            case USER:
-                return 1;
-            case DEVELOPER:
-                return 1;
-            case SCRUM_MASTER:
-                return 0;
-            case ADMINISTRATOR:
-                return -1;
-            default:
-                return -1;
-        }
-    }
-
-    public int compareTo(Role r)
-    {
-        switch(r.toString())
-        {
-            case ANONYMOUS:
-                return 1;
-            case USER:
-                return 1;
-            case DEVELOPER:
-                return 1;
-            case SCRUM_MASTER:
-                return 0;
-            case ADMINISTRATOR:
-                return -1;
-            default:
-                return -1;
-        }
+        return getEnum() - other.getEnum();
     }
     @Override
     public int getEnum()
@@ -119,38 +52,39 @@ public class ScrumMasterRole implements Role
 
     @Override
     public boolean canAddUser(UserData ud) {
-        return user.getUD().getTeam().equals(ud.getTeam());
+        return user.getUD().getTeam().equals(ud.getTeam()) && 
+               compareTo(ud.getRole()) > 0;
     }
 
     @Override
     public boolean canRemoveUser(UserData ud) {
-        return user.getUD().getTeam().equals(ud.getTeam());
+        return user.getUD().getTeam().equals(ud.getTeam()) && 
+               compareTo(ud.getRole()) > 0;
     }
 
     @Override
     public boolean canChangeRole(UserData oldUD, UserData newUD) {
-        return compareTo(oldUD.getRole()) > 0 && 
-            user.getUD().getTeam().equals(newUD.getTeam());
-    }
-
-    @Override
-    public boolean canTeamChat(UserData ud) {
-        return true;
+        return compareTo(oldUD.getRole()) > 0 &&  //can only modify people with lower roles
+               compareTo(newUD.getRole()) > 0 &&  //can only change roles to lower roles
+               user.getUD().getTeam().equals(newUD.getTeam()); //can only affect users on the same team
     }
 
     @Override
     public boolean canSetTeam(UserData oldUD, UserData newUD) {
-        //Has to test old team to check if user is on no team
-        //or if user is already on a team.  If so, disallow this action
-        if(oldUD.getTeam().equals("") && newUD.getTeam().equals(user.getTeamName())) {
-            return true;
-        }else {
-            return false;
-        }
+        return (
+                   oldUD.getTeam().equals("") &&               //can move people from empty team to own team
+                   newUD.getTeam().equals(user.getTeamName()) && 
+                   compareTo(oldUD.getRole()) > 0              //who have lower roles
+                ) ||
+                (
+                   newUD.getTeam().equals("") &&               //can move people from own team to empty team
+                   oldUD.getTeam().equals(user.getTeamName()) &&
+                   compareTo(oldUD.getRole()) > 0              //who have lower roles
+                );
     }
 
     @Override
-    public boolean canSetCompany(UserData ud, UserData newCompName) {
+    public boolean canSetCompany(UserData oldUD, UserData newUD) {
         //Same thing as canSetTeam(..), except with company name
         return false;
     }

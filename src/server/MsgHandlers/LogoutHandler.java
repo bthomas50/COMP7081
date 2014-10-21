@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package server;
+package server.MsgHandlers;
+
+import server.User;
 
 /**
  *

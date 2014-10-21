@@ -42,7 +42,7 @@ public class Login
             String[] strs = msg.split(" ");
             Connection conn = DB.connect();
             if(strs.length < 2)
-                return new User("Anonymous", "", "", "default", sInput, sOutput, server);
+                return new User("Anonymous", "", "", "", "", sInput, sOutput, server);
             switch (Users.getPassword(conn, strs[0], Util.mySQLCompatibleMD5(strs[1])))
             {
                 case SUCCESS:
@@ -50,14 +50,15 @@ public class Login
                                     strs[1],
                                     Users.getRole(conn, strs[0]),
                                     Users.getTeam(conn, strs[0]),
+                                    Users.getCompany(conn, strs[0]),
                                     sInput, sOutput, server);
                 default:
-                    return new User("Anonymous", "", "", "default", sInput, sOutput, server);
+                    return new User("Anonymous", "", "", "", "", sInput, sOutput, server);
             }
         } catch (SQLException ex)
         {
             DB.printSQLException(ex);
-            return new User("Anonymous", "", "", "default", sInput, sOutput, server);
+            return new User("Anonymous", "", "", "", "", sInput, sOutput, server);
         }
     }
     

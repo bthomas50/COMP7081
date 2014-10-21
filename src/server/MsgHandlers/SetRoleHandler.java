@@ -11,6 +11,7 @@ import server.DB.DB;
 import server.DB.Users;
 import server.Roles.RoleFactory;
 import server.User;
+import server.UserData;
 
 /**
  *
@@ -20,21 +21,24 @@ public class SetRoleHandler
 {
     public static void handle(User user, String name, String newRole) throws Exception
     {
-        Connection conn = DB.connect();
-        if(user.getRole().canChangeRole(Users.getTeam(conn, name), newRole))
+        try(Connection conn = DB.connect())
         {
-            Users.setRole(conn, name, newRole);
-            conn.close();
-            User onlineUser = user.getServer().getUser(name);
-            if(onlineUser != null)
+            UserData oldUD = Users.getDummyUserData(conn, name);
+            UserData newUD = new UserData(oldUD);
+            newUD.setRole(RoleFactory.createRole(newRole, null));
+            if(user.getRole().canChangeRole(oldUD, newUD))
             {
-                onlineUser.setRole(RoleFactory.createRole(newRole, onlineUser));
+                Users.setRole(conn, name, newRole);
+                User onlineUser = user.getServer().getUser(name);
+                if(onlineUser != null)
+                {
+                    onlineUser.setRole(RoleFactory.createRole(newRole, onlineUser));
+                }
             }
-        }
-        else
-        {
-            conn.close();
-            throw new Exception();
+            else
+            {
+                throw new Exception();
+            }
         }
         
     }

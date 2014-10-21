@@ -10,6 +10,7 @@ import java.sql.Connection;
 import server.DB.DB;
 import server.DB.Users;
 import server.User;
+import server.UserData;
 
 /**
  *
@@ -20,14 +21,17 @@ public class SetCompanyHandler
 
     public static void handle(User pUser, String username, String newCompany) throws Exception
     {
-        if(pUser.getRole().canSetCompany(username, newCompany))
+        try(Connection conn = DB.connect())
         {
-            try(Connection conn = DB.connect())
+            UserData oldUD = Users.getDummyUserData(conn, username);
+            UserData newUD = new UserData(oldUD);
+            //newUD.setCompany(newCompany);
+            if(pUser.getRole().canSetCompany(oldUD, newUD))
             {
                 Users.setCompany(conn, username, newCompany);
             }
+            else throw new Exception("Insufficient permission");
         }
-        else throw new Exception("Insufficient permission");
     }
     
 }

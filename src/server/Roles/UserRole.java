@@ -6,6 +6,7 @@
 
 package server.Roles;
 
+import server.User;
 import server.UserData;
 
 /**
@@ -14,39 +15,16 @@ import server.UserData;
  */
 public class UserRole implements Role
 {
-    @Override
-    public boolean canSetTeam(String username, String newTeam)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean canSetCompany(String username, String newCompany)
-    {
-        return false;
-    }
-    @Override
-    public boolean canAddUser(String team)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean canRemoveUser(String team)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean canChangeRole(String team, String newRole)
-    {
-        return false;
-    }
+    private final User user;
     
-    @Override
-    public boolean canTeamChat(String team)
+    public UserRole(User u)
     {
-        return false;
+        user = u;
+    }
+    @Override
+    public boolean canTeamChat(String teamName)
+    {
+        return teamName.equals(user.getTeamName());
     }
 
     @Override
@@ -59,26 +37,6 @@ public class UserRole implements Role
     public String toString()
     {
         return USER;
-    }
-
-    @Override
-    public int compareTo(String o)
-    {
-        switch(o)
-        {
-            case ANONYMOUS:
-                return 1;
-            case USER:
-                return 0;
-            case DEVELOPER:
-                return -1;
-            case SCRUM_MASTER:
-                return -1;
-            case ADMINISTRATOR:
-                return -1;
-            default:
-                return -1;
-        }
     }
 
     @Override
@@ -103,11 +61,6 @@ public class UserRole implements Role
     }
 
     @Override
-    public boolean canTeamChat(UserData ud) {
-        return false;
-    }
-
-    @Override
     public boolean canSetTeam(UserData oldUD, UserData newUD) {
         return false;
     }
@@ -115,6 +68,12 @@ public class UserRole implements Role
     @Override
     public boolean canSetCompany(UserData ud, UserData newCompName) {
         return false;
+    }
+
+    @Override
+    public int compareTo(Role o)
+    {
+        return getEnum() - o.getEnum();
     }
 
 }
