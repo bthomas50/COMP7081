@@ -20,13 +20,13 @@ import server.UserData;
  */
 public class AddUserHandler
 {
-    public static void handle(User user, String name, String password, String role, String team, String company) throws Exception
+    public static void handle(User user, String name, String password, String role, String team) throws Exception
     {
         Connection conn;
-        if(user.getRole().canAddUser(UserData.createDummyUserData(name, password, role, team, company)))
+        if(user.getRole().canAddUser(UserData.createDummyUserData(name, password, role, team)))
         {
             conn = DB.connect();
-            innerHandle(conn, name, password, role, team, company);
+            innerHandle(conn, name, password, role, team);
             conn.close();
         }
         else
@@ -34,19 +34,15 @@ public class AddUserHandler
             throw new Exception();
         }
     }
-    private static void innerHandle(Connection conn, String name, String password, String role, String team, String company) throws SQLException
+    private static void innerHandle(Connection conn, String name, String password, String role, String team) throws SQLException
     {
         if(team == null)
         {
-            Users.addUser(conn, name, Util.mySQLCompatibleMD5(password), role, "null", "null");
-        }
-        else if(company == null)
-        {
-            Users.addUser(conn, name, Util.mySQLCompatibleMD5(password), role, team, "null");
+            Users.addUser(conn, name, Util.mySQLCompatibleMD5(password), role, "");
         }
         else
         {
-            Users.addUser(conn, name, Util.mySQLCompatibleMD5(password), role, team, company);
+            Users.addUser(conn, name, Util.mySQLCompatibleMD5(password), role, team);
         }
     }
 }

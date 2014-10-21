@@ -6,6 +6,7 @@
 
 package server.Roles;
 
+import server.TeamData;
 import server.UserData;
 
 /**
@@ -40,5 +41,5 @@ public interface Role extends Comparable<Role>
     boolean canRemoveUser(UserData ud);
     boolean canChangeRole(UserData oldUD, UserData newUD);
     public boolean canSetTeam(UserData oldUD, UserData newUD);
-    public boolean canSetCompany(UserData oldUD, UserData newUD);
+    public boolean canSetCompany(TeamData oldTD, TeamData newTD);
 }
