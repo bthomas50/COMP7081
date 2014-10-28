@@ -5,6 +5,7 @@
 package server.DB;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,13 +15,12 @@ import server.UserData;
 
 /**
  *
- * @author Matt
+ * @author Matt, Brian
  */
 public class UsersTest {
     
     public UsersTest() {
     }
-    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -35,14 +35,21 @@ public class UsersTest {
     @Test
     public void testGetPassword() throws Exception {
         System.out.println("getPassword");
-        Connection conn = null;
-        String username = "";
-        String passHash = "";
-        PwdResult expResult = null;
-        PwdResult result = Users.getPassword(conn, username, passHash);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try(Connection conn = DB.connect())
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                PwdResult expResult = PwdResult.SUCCESS;
+                PwdResult result = Users.getPassword(conn, DBSuite.USERNAMES[i], DBSuite.PASSWORDS[i]);
+                assertEquals(expResult, result);
+                expResult = PwdResult.INCORRECT_PASSWORD;
+                result = Users.getPassword(conn, DBSuite.USERNAMES[i], DBSuite.PASSWORDS[i] + "blahblah");
+                assertEquals(expResult, result);
+                expResult = PwdResult.NO_SUCH_USER;
+                result = Users.getPassword(conn, DBSuite.USERNAMES[i] + "blahblah", DBSuite.PASSWORDS[i]);
+                assertEquals(expResult, result);
+            }
+        }
     }
 
     /**

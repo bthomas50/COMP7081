@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import server.TeamData;
-import server.UserData;
 
 /**
  *
@@ -22,6 +21,7 @@ public class Teams
     private static final String tableName = "teams";
     
     private static final String addTeam = "INSERT INTO " + tableName + " VALUES(?,?)";
+    private static final String removeTeam = "DELETE FROM " + tableName + " WHERE team_id = ?";
     
     private static final String getCompany = "SELECT company FROM " + tableName + " WHERE team_id = ?";
     private static final String setCompany = "UPDATE " + tableName + " SET company = ? WHERE team_id = ?";
@@ -34,6 +34,17 @@ public class Teams
             stmt.setString(2, data.getCompanyName());
             if (stmt.executeUpdate() == 0)
                 throw new SQLException("team already exists");
+        }
+    }
+    
+    public static void removeTeam(Connection conn, String teamName) throws SQLException
+    {
+        try (PreparedStatement stmt = conn.prepareStatement(removeTeam))
+        {
+            stmt.setString(1, teamName);
+
+            if (stmt.executeUpdate() == 0)
+                throw new SQLException("team does not exist");
         }
     }
     
