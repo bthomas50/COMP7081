@@ -18,7 +18,7 @@ public class DB
         
     private DB()
     {}
-    
+    ///////changes
     public static Connection connect() throws SQLException
     {
         return DriverManager.getConnection(dbURL, dbUser, dbPwd);
