@@ -13,7 +13,7 @@ import org.junit.runners.Suite;
  * @author Matt
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({server.ServerSuite.class, client.ClientSuite.class, common.CommonSuite.class})
+@Suite.SuiteClasses({server.ServerSuite.class, common.CommonSuite.class})
 public class RootSuite {
 
     @BeforeClass

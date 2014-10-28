@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author Matt
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({common.UtilTest.class, common.LoginMessageTest.class, common.ChatMessageTest.class, common.AddUserMessageTest.class})
+@Suite.SuiteClasses({common.UtilTest.class})
 public class CommonSuite {
 
     @BeforeClass
