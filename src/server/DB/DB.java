@@ -15,7 +15,7 @@ public class DB
     private static final String dbURL = "jdbc:mysql://localhost:3306/chatproject";
     private static final String dbUser = "root";
     private static final String dbPwd = "";
-        
+        //////more changes!!
     private DB()
     {}
     ///////changes
