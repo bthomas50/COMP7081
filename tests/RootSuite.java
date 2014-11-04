@@ -18,6 +18,7 @@ public class RootSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        System.out.println("Testing RootSuite: set up");
     }
 
     @AfterClass

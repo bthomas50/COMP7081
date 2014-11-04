@@ -19,6 +19,7 @@ public class DB
     private DB()
     {}
     ///////changes
+    ///such change. Wow.
     public static Connection connect() throws SQLException
     {
         return DriverManager.getConnection(dbURL, dbUser, dbPwd);

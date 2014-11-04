@@ -34,11 +34,19 @@ public class TeamsTest {
     @Test
     public void testAddTeam() throws Exception {
         System.out.println("addTeam");
-        Connection conn = null;
-        TeamData data = null;
-        Teams.addTeam(conn, data);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try(Connection conn = DB.connect())
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                TeamData expResult = new TeamData(DBSuite.TEAMS[i] + "blahblah", DBSuite.COMPANIES[i]);
+                Teams.addTeam(conn, expResult);
+                TeamData result = Teams.getTeamData(conn, expResult.getTeamName());
+                assertEquals(expResult.getTeamName(), result.getTeamName());
+                assertEquals(expResult.getCompanyName(), result.getCompanyName());
+                Teams.removeTeam(conn, expResult.getTeamName());
+                        
+            }
+        }
     }
 
     /**
@@ -47,13 +55,16 @@ public class TeamsTest {
     @Test
     public void testGetTeamData() throws Exception {
         System.out.println("getTeamData");
-        Connection conn = null;
-        String teamName = "";
-        TeamData expResult = null;
-        TeamData result = Teams.getTeamData(conn, teamName);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try(Connection conn = DB.connect())
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                TeamData expResult = new TeamData(DBSuite.TEAMS[i], DBSuite.COMPANIES[i]);
+                TeamData result = Teams.getTeamData(conn, expResult.getTeamName());
+                assertEquals(expResult.getTeamName(), result.getTeamName());
+                assertEquals(expResult.getCompanyName(), result.getCompanyName());
+            }
+        }
     }
 
     /**
@@ -62,11 +73,18 @@ public class TeamsTest {
     @Test
     public void testSetCompany() throws Exception {
         System.out.println("setCompany");
-        Connection conn = null;
-        String teamName = "";
-        String newCompany = "";
-        Teams.setCompany(conn, teamName, newCompany);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try(Connection conn = DB.connect())
+        {
+            for(int i = 0; i < 2; i++)
+            {
+                TeamData expResult = new TeamData(DBSuite.TEAMS[i], DBSuite.COMPANIES[i] + "blahblah");
+                Teams.setCompany(conn, expResult.getTeamName(), expResult.getCompanyName());
+                TeamData result = Teams.getTeamData(conn, expResult.getTeamName());
+                assertEquals(expResult.getTeamName(), result.getTeamName());
+                assertEquals(expResult.getCompanyName(), result.getCompanyName());
+                
+                Teams.setCompany(conn, expResult.getTeamName(), DBSuite.COMPANIES[i]);
+            }
+        }
     }
 }

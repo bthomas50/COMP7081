@@ -32,11 +32,11 @@ public class UtilTest {
     @Test
     public void testMySQLCompatibleMD5() {
         System.out.println("mySQLCompatibleMD5");
-        String s = "";
-        String expResult = "";
+        String s = "password";
+        String s2 = "password2";
+        String expResult = "5f4dcc3b5aa765d61d8327deb882cf99";
         String result = Util.mySQLCompatibleMD5(s);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(expResult.equals(Util.mySQLCompatibleMD5(s2)));
     }
 }
