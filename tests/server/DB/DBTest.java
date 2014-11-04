@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Matt
+ * @author Matt, Brian
  */
 public class DBTest {
     
@@ -34,22 +34,7 @@ public class DBTest {
     @Test
     public void testConnect() throws Exception {
         System.out.println("connect");
-        Connection expResult = null;
         Connection result = DB.connect();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of printSQLException method, of class DB.
-     */
-    @Test
-    public void testPrintSQLException() {
-        System.out.println("printSQLException");
-        SQLException ex = null;
-        DB.printSQLException(ex);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(result == null) fail("connection was null");
     }
 }
