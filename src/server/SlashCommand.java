@@ -1,3 +1,4 @@
+// Test Tag 1
 package server;
 
 import server.MsgHandlers.LogoutHandler;
@@ -187,11 +188,21 @@ public final class SlashCommand
                 }
                 break;
             case "/logout":
-                LogoutHandler.handle(pUser);
+                try
+                {
+                    LogoutHandler.handle(pUser);
+                }
+                catch(Exception ex)
+                { }
                 return E_CONSUMED;
             case "/whoisin":
-                WhoIsInHandler.handle(pUser);
-                break;
+                try
+                {
+                    WhoIsInHandler.handle(pUser);
+                }
+                catch(Exception ex)
+                { }
+                return E_CONSUMED;
             default:
                 s = "Server> Valid commands: /adduser /deluser /setrole /setteam /setcompany /t\n";
         }
