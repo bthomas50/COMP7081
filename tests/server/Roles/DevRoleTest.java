@@ -5,7 +5,6 @@
 package server.Roles;
 
 import java.io.BufferedReader;
-import java.io.PrintWriter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,9 +13,9 @@ import server.Server;
 import server.TeamData;
 import server.User;
 import server.UserData;
+import java.io.PrintWriter;
 
 /**
- *
  * @author Matt
  */
 public class DevRoleTest {
@@ -29,7 +28,7 @@ public class DevRoleTest {
                 , "dev"
                 , "testTeam"
                 , (BufferedReader)null
-                , (PrintWriter)null
+                ,  new PrintWriter(System.out)
                 , (Server)null);
     }
     
