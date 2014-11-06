@@ -65,19 +65,33 @@ public class UserCallable implements Callable<Boolean>
         if (iResult == SlashCommand.E_CONSUMED)
         {
             return disconnected;
-        } else if (iResult == SlashCommand.E_IGNORED)
+        }
+        else if (iResult == SlashCommand.E_IGNORED)
         {
             if(user.getRole().canAllChat())
             {
                 server.broadcast(user.getUserID() + " (" + user.getTeamName() + "): " + message);
             }
-            
-        } else if(user.getRole().canTeamChat(user.getTeamName()))
+        }
+        else if (iResult > 0)
         {
-            server.teamBroadcast(
-                    user.getTeamName(),
-                    user.getUserID() + " (" + user.getTeamName() + "): "
-                    + message.substring(iResult));
+            if (user.getRole().canTeamChat(user.getTeamName()))
+            {
+                server.teamBroadcast(
+                        user.getTeamName(),
+                        user.getUserID() + " (" + user.getTeamName() + "): "
+                        + message.substring(iResult));
+            }
+        }
+        else
+        {
+            if (user.getRole().canTeamChat(user.getTeamName()))
+            {
+                server.companyBroadcast(
+                        user.getCompany(),
+                        user.getUserID() + " ([C]" + user.getCompany() + "): "
+                        + message.substring(-iResult));
+            }
         }
 
         return disconnected;

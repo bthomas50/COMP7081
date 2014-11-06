@@ -42,7 +42,7 @@ public class ClientLoginDialog extends javax.swing.JDialog
         jtxtPassword = new javax.swing.JTextField();
         jbLogin = new javax.swing.JButton();
         jbAnon = new javax.swing.JButton();
-        jbCancel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setTitle("Quick Login");
         setModal(true);
@@ -92,12 +92,12 @@ public class ClientLoginDialog extends javax.swing.JDialog
             }
         });
 
-        jbCancel.setLabel("Cancel");
-        jbCancel.addActionListener(new java.awt.event.ActionListener()
+        jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jbCancelActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -116,15 +116,15 @@ public class ClientLoginDialog extends javax.swing.JDialog
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap(37, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbAnon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbCancel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ public class ClientLoginDialog extends javax.swing.JDialog
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAnon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCancel))
+                    .addComponent(jButton1))
                 .addGap(24, 24, 24))
         );
 
@@ -148,12 +148,6 @@ public class ClientLoginDialog extends javax.swing.JDialog
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbCancelActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbCancelActionPerformed
-    {//GEN-HEADEREND:event_jbCancelActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-    }//GEN-LAST:event_jbCancelActionPerformed
 
     private void jbAnonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jbAnonActionPerformed
     {//GEN-HEADEREND:event_jbAnonActionPerformed
@@ -188,6 +182,12 @@ public class ClientLoginDialog extends javax.swing.JDialog
         // TODO add your handling code here:
         jbLoginActionPerformed(null);
     }//GEN-LAST:event_jtxtPasswordActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,10 +249,10 @@ public class ClientLoginDialog extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbAnon;
-    private javax.swing.JButton jbCancel;
     private javax.swing.JButton jbLogin;
     private javax.swing.JTextField jtxtName;
     private javax.swing.JTextField jtxtPassword;
