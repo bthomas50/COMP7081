@@ -81,7 +81,7 @@
         name="-do-compile-test">
         <j2seproject3:javac
             apgeneratedsrcdir="${build.test.classes.dir}"
-            classpath="${javac.test.classpath}:/home/ec2-user/junit/junit.jar:/home/ec2-user/ant/lib/javaws.jar"
+            classpath="${javac.test.classpath}:/home/ec2-user/junit/junit.jar:/usr/java/jdk1.7.0_71/jre/lib/javaws.jar"
             debug="true" destdir="${build.test.classes.dir}"
             processorpath="${javac.test.processorpath}"
             srcdir="${test.src.dir}"/>
