@@ -34,11 +34,11 @@ public class ServerGUITest {
     @Test
     public void testAppendRoom() {
         System.out.println("appendRoom");
-        String str = "";
-        ServerGUI instance = null;
-        instance.appendRoom(str);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        String str = "";
+//        ServerGUI instance = null;
+//        instance.appendRoom(str);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -47,11 +47,11 @@ public class ServerGUITest {
     @Test
     public void testAppendEvent() {
         System.out.println("appendEvent");
-        String str = "";
-        ServerGUI instance = null;
-        instance.appendEvent(str);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        String str = "";
+//        ServerGUI instance = null;
+//        instance.appendEvent(str);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,11 +60,11 @@ public class ServerGUITest {
     @Test
     public void testActionPerformed() {
         System.out.println("actionPerformed");
-        ActionEvent e = null;
-        ServerGUI instance = null;
-        instance.actionPerformed(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        ActionEvent e = null;
+//        ServerGUI instance = null;
+//        instance.actionPerformed(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -73,10 +73,10 @@ public class ServerGUITest {
     @Test
     public void testMain() {
         System.out.println("main");
-        String[] arg = null;
-        ServerGUI.main(arg);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        String[] arg = null;
+//        ServerGUI.main(arg);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,11 +85,11 @@ public class ServerGUITest {
     @Test
     public void testWindowClosing() {
         System.out.println("windowClosing");
-        WindowEvent e = null;
-        ServerGUI instance = null;
-        instance.windowClosing(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        WindowEvent e = null;
+//        ServerGUI instance = null;
+//        instance.windowClosing(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -98,11 +98,11 @@ public class ServerGUITest {
     @Test
     public void testWindowClosed() {
         System.out.println("windowClosed");
-        WindowEvent e = null;
-        ServerGUI instance = null;
-        instance.windowClosed(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        WindowEvent e = null;
+//        ServerGUI instance = null;
+//        instance.windowClosed(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -111,11 +111,11 @@ public class ServerGUITest {
     @Test
     public void testWindowOpened() {
         System.out.println("windowOpened");
-        WindowEvent e = null;
-        ServerGUI instance = null;
-        instance.windowOpened(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        WindowEvent e = null;
+//        ServerGUI instance = null;
+//        instance.windowOpened(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -124,11 +124,11 @@ public class ServerGUITest {
     @Test
     public void testWindowIconified() {
         System.out.println("windowIconified");
-        WindowEvent e = null;
-        ServerGUI instance = null;
-        instance.windowIconified(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        WindowEvent e = null;
+//        ServerGUI instance = null;
+//        instance.windowIconified(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -137,11 +137,11 @@ public class ServerGUITest {
     @Test
     public void testWindowDeiconified() {
         System.out.println("windowDeiconified");
-        WindowEvent e = null;
-        ServerGUI instance = null;
-        instance.windowDeiconified(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        WindowEvent e = null;
+//        ServerGUI instance = null;
+//        instance.windowDeiconified(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -150,11 +150,11 @@ public class ServerGUITest {
     @Test
     public void testWindowActivated() {
         System.out.println("windowActivated");
-        WindowEvent e = null;
-        ServerGUI instance = null;
-        instance.windowActivated(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        WindowEvent e = null;
+//        ServerGUI instance = null;
+//        instance.windowActivated(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -163,10 +163,10 @@ public class ServerGUITest {
     @Test
     public void testWindowDeactivated() {
         System.out.println("windowDeactivated");
-        WindowEvent e = null;
-        ServerGUI instance = null;
-        instance.windowDeactivated(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        WindowEvent e = null;
+//        ServerGUI instance = null;
+//        instance.windowDeactivated(e);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 }

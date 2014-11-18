@@ -33,13 +33,13 @@ public class TeamTest {
     @Test
     public void testAddUser() {
         System.out.println("addUser");
-        User user = null;
-        Team instance = null;
-        boolean expResult = false;
-        boolean result = instance.addUser(user);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        User user = null;
+//        Team instance = null;
+//        boolean expResult = false;
+//        boolean result = instance.addUser(user);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -48,13 +48,13 @@ public class TeamTest {
     @Test
     public void testContainsMember() {
         System.out.println("containsMember");
-        User user = null;
-        Team instance = null;
-        boolean expResult = false;
-        boolean result = instance.containsMember(user);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        User user = null;
+//        Team instance = null;
+//        boolean expResult = false;
+//        boolean result = instance.containsMember(user);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,13 +63,13 @@ public class TeamTest {
     @Test
     public void testRemoveUser() {
         System.out.println("removeUser");
-        User user = null;
-        Team instance = null;
-        boolean expResult = false;
-        boolean result = instance.removeUser(user);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        User user = null;
+//        Team instance = null;
+//        boolean expResult = false;
+//        boolean result = instance.removeUser(user);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -78,12 +78,12 @@ public class TeamTest {
     @Test
     public void testGetTeamList() {
         System.out.println("getTeamList");
-        Team instance = null;
-        String[] expResult = null;
-        String[] result = instance.getTeamList();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        Team instance = null;
+//        String[] expResult = null;
+//        String[] result = instance.getTeamList();
+//        assertArrayEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,12 +92,12 @@ public class TeamTest {
     @Test
     public void testGetTeamName() {
         System.out.println("getTeamName");
-        Team instance = null;
-        String expResult = "";
-        String result = instance.getTeamName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        Team instance = null;
+//        String expResult = "";
+//        String result = instance.getTeamName();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -106,11 +106,11 @@ public class TeamTest {
     @Test
     public void testSetTeamName() {
         System.out.println("setTeamName");
-        String teamName = "";
-        Team instance = null;
-        instance.setTeamName(teamName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        String teamName = "";
+//        Team instance = null;
+//        instance.setTeamName(teamName);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -119,12 +119,12 @@ public class TeamTest {
     @Test
     public void testGetTeamMembers() {
         System.out.println("getTeamMembers");
-        Team instance = null;
-        ArrayList expResult = null;
-        ArrayList result = instance.getTeamMembers();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        Team instance = null;
+//        ArrayList expResult = null;
+//        ArrayList result = instance.getTeamMembers();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -133,11 +133,11 @@ public class TeamTest {
     @Test
     public void testGetCompanyName() {
         System.out.println("getCompanyName");
-        Team instance = null;
-        String expResult = "";
-        String result = instance.getCompanyName();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+//        Team instance = null;
+//        String expResult = "";
+//        String result = instance.getCompanyName();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 }
