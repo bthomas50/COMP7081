@@ -31,26 +31,15 @@ public class TeamDataTest {
      */
     @Test
     public void testGetTeamName() {
-        System.out.println("getTeamName");
-        TeamData instance = null;
-        String expResult = "";
-        String result = instance.getTeamName();
+        System.out.println("get/setTeamName");
+        String expResult = "blah";
+        TeamData data = new TeamData(expResult, "g628giy");
+        String result = data.getTeamName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setTeamName method, of class TeamData.
-     */
-    @Test
-    public void testSetTeamName() {
-        System.out.println("setTeamName");
-        String teamName = "";
-        TeamData instance = null;
-        instance.setTeamName(teamName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        expResult = "asdfh";
+        data.setTeamName(expResult);
+        result = data.getTeamName();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -58,25 +47,15 @@ public class TeamDataTest {
      */
     @Test
     public void testGetCompanyName() {
-        System.out.println("getCompanyName");
-        TeamData instance = null;
-        String expResult = "";
-        String result = instance.getCompanyName();
+        System.out.println("get/setCompanyName");
+        String expResult = "blah";
+        TeamData data = new TeamData("fg22f", "blah");
+        String result = data.getCompanyName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        expResult = "asdfh";
+        data.setCompanyName(expResult);
+        result = data.getCompanyName();
+        assertEquals(expResult, result);
     }
 
-    /**
-     * Test of setCompanyName method, of class TeamData.
-     */
-    @Test
-    public void testSetCompanyName() {
-        System.out.println("setCompanyName");
-        String companyName = "";
-        TeamData instance = null;
-        instance.setCompanyName(companyName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 }

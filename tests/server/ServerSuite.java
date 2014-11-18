@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author Matt
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({server.DB.DBSuite.class, server.TeamDataTest.class, server.AsyncListenerTest.class, server.Roles.RolesSuite.class, server.TeamTest.class, server.ServerTest.class, server.SlashCommandTest.class, server.UserTest.class, server.CompanyTest.class, server.ServerGUITest.class, server.UserCallableTest.class, server.UserDataTest.class, server.MsgHandlers.MsgHandlersSuite.class})
+@Suite.SuiteClasses({server.DB.DBSuite.class, server.TeamDataTest.class, server.AsyncListenerTest.class, server.Roles.RolesSuite.class, server.TeamTest.class, server.ServerTest.class, server.SlashCommandTest.class, server.UserTest.class, server.CompanyTest.class, server.UserDataTest.class, server.MsgHandlers.MsgHandlersSuite.class})
 public class ServerSuite {
 
     @BeforeClass
