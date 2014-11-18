@@ -4,10 +4,13 @@
  */
 package server.MsgHandlers;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import server.Server;
 import server.User;
 
 /**
@@ -16,7 +19,11 @@ import server.User;
  */
 public class WhoIsInHandlerTest {
     
+    private User u;
+    
     public WhoIsInHandlerTest() {
+        //pass in server
+        u = new User("tester", "password", "admin", "testTeam", (BufferedReader) null, new PrintWriter(System.out), (Server) null);
     }
     
     @BeforeClass
@@ -33,9 +40,7 @@ public class WhoIsInHandlerTest {
     @Test
     public void testHandle() {
         System.out.println("handle");
-        User pUser = null;
+        User pUser = u;
         WhoIsInHandler.handle(pUser);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }
