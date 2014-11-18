@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
  * @author Matt
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({server.Roles.RoleTest.class, server.Roles.DevRoleTest.class, server.Roles.RoleFactoryTest.class, server.Roles.AdminRoleTest.class, server.Roles.ScrumMasterRoleTest.class, server.Roles.AnonRoleTest.class, server.Roles.UserRoleTest.class})
+@Suite.SuiteClasses({server.Roles.DevRoleTest.class, server.Roles.RoleFactoryTest.class, server.Roles.AdminRoleTest.class, server.Roles.ScrumMasterRoleTest.class, server.Roles.AnonRoleTest.class, server.Roles.UserRoleTest.class})
 public class RolesSuite {
 
     @BeforeClass

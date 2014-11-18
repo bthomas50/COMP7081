@@ -4,11 +4,15 @@
  */
 package server.Roles;
 
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import server.Server;
 import server.TeamData;
+import server.User;
 import server.UserData;
 
 /**
@@ -17,7 +21,15 @@ import server.UserData;
  */
 public class UserRoleTest {
     
+    private User u, user, admin, developer, scrum, anon;
+    
     public UserRoleTest() {
+        u = new User("tester", "password", "user", "testTeam", (BufferedReader) null, new PrintWriter(System.out), (Server) null);
+        admin = new User("tester", "password", "admin", "testTeam", (BufferedReader) null, new PrintWriter(System.out), (Server) null);
+        developer = new User("tester", "password", "dev", "testTeam", (BufferedReader) null, new PrintWriter(System.out), (Server) null);
+        scrum = new User("tester", "password", "master", "testTeam", (BufferedReader) null, new PrintWriter(System.out), (Server) null);
+        anon = new User("tester", "password", "anon", "testTeam", (BufferedReader) null, new PrintWriter(System.out), (Server) null);   
+        user = new User("tester", "password", "user", "testTeam", (BufferedReader) null, new PrintWriter(System.out), (Server) null);
     }
     
     @BeforeClass
@@ -34,13 +46,11 @@ public class UserRoleTest {
     @Test
     public void testCanTeamChat() {
         System.out.println("canTeamChat");
-        String teamName = "";
-        UserRole instance = null;
-        boolean expResult = false;
+        String teamName = "testTeam";
+        Role instance = u.getRole();
+        boolean expResult = true;
         boolean result = instance.canTeamChat(teamName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -49,12 +59,10 @@ public class UserRoleTest {
     @Test
     public void testCanAllChat() {
         System.out.println("canAllChat");
-        UserRole instance = null;
-        boolean expResult = false;
+        Role instance = u.getRole();
+        boolean expResult = true;
         boolean result = instance.canAllChat();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,12 +71,10 @@ public class UserRoleTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        UserRole instance = null;
-        String expResult = "";
+        Role instance = u.getRole();
+        String expResult = Role.USER;
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -77,12 +83,10 @@ public class UserRoleTest {
     @Test
     public void testGetEnum() {
         System.out.println("getEnum");
-        UserRole instance = null;
-        int expResult = 0;
+        Role instance = u.getRole();
+        int expResult = Role.E_USER;
         int result = instance.getEnum();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -91,13 +95,11 @@ public class UserRoleTest {
     @Test
     public void testCanAddUser() {
         System.out.println("canAddUser");
-        UserData ud = null;
-        UserRole instance = null;
+        UserData ud = new UserData("testUD", "passUD", new AnonRole(), "testTeam");
+        Role instance = u.getRole();
         boolean expResult = false;
         boolean result = instance.canAddUser(ud);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -106,13 +108,11 @@ public class UserRoleTest {
     @Test
     public void testCanRemoveUser() {
         System.out.println("canRemoveUser");
-        UserData ud = null;
-        UserRole instance = null;
+        UserData ud = new UserData("testUD", "passUD", new AnonRole(), "testTeam");
+        Role instance = u.getRole();
         boolean expResult = false;
         boolean result = instance.canRemoveUser(ud);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -121,14 +121,12 @@ public class UserRoleTest {
     @Test
     public void testCanChangeRole() {
         System.out.println("canChangeRole");
-        UserData oldUD = null;
-        UserData newUD = null;
-        UserRole instance = null;
+        UserData oldUD = new UserData("testUD", "passUD", new AnonRole(), "testTeam");
+        UserData newUD = new UserData("testUD", "passUD", new DevRole(u), "testTeam");
+        Role instance = u.getRole();
         boolean expResult = false;
         boolean result = instance.canChangeRole(oldUD, newUD);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -137,14 +135,12 @@ public class UserRoleTest {
     @Test
     public void testCanSetTeam() {
         System.out.println("canSetTeam");
-        UserData oldUD = null;
-        UserData newUD = null;
-        UserRole instance = null;
+        UserData oldUD = new UserData("testUD", "passUD", new AnonRole(), "testTeam");
+        UserData newUD = new UserData("testUD", "passUD", new AnonRole(), "testTeam2");
+        Role instance = u.getRole();
         boolean expResult = false;
         boolean result = instance.canSetTeam(oldUD, newUD);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -153,14 +149,13 @@ public class UserRoleTest {
     @Test
     public void testCanSetCompany() {
         System.out.println("canSetCompany");
-        TeamData oldTD = null;
-        TeamData newTD = null;
-        UserRole instance = null;
+        TeamData oldTD = new TeamData("team1", "comp1");
+        TeamData newTD = new TeamData("team2", "comp2");
+        Role instance = u.getRole();
+        
         boolean expResult = false;
         boolean result = instance.canSetCompany(oldTD, newTD);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -169,12 +164,31 @@ public class UserRoleTest {
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        Role o = null;
-        UserRole instance = null;
-        int expResult = 0;
-        int result = instance.compareTo(o);
+        Role instance = u.getRole();
+                
+        Role other = admin.getRole();
+        int expResult = instance.getEnum() - other.getEnum();
+        int result = instance.compareTo(other);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        other = user.getRole();
+        expResult = instance.getEnum() - other.getEnum();
+        result = instance.compareTo(other);
+        assertEquals(expResult, result);
+        
+        other = developer.getRole();
+        expResult = instance.getEnum() - other.getEnum();
+        result = instance.compareTo(other);
+        assertEquals(expResult, result);
+        
+        other = scrum.getRole();
+        expResult = instance.getEnum() - other.getEnum();
+        result = instance.compareTo(other);
+        assertEquals(expResult, result);
+        
+        other = anon.getRole();
+        expResult = instance.getEnum() - other.getEnum();
+        result = instance.compareTo(other);
+        assertEquals(expResult, result);
     }
 }

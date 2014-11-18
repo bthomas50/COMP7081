@@ -95,7 +95,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 		add(southPanel, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(600, 600);
+		setSize(680, 600);
 		setVisible(true);
 		tf.requestFocus();
         
@@ -151,8 +151,13 @@ public class ClientGUI extends JFrame implements ActionListener {
 
             if (sMsg.length() == 0) return;
             
-            if (e.getID() >= ActionEvent.ACTION_FIRST && m_Helper.isTeamChatOn())
-                sMsg = "/t " + sMsg;
+            if (e.getID() >= ActionEvent.ACTION_FIRST)
+            {
+                if (m_Helper.isTeamChatOn())
+                    sMsg = "/t " + sMsg;
+                else if (m_Helper.isCompanyChatOn())
+                    sMsg = "/c " + sMsg;
+            }
                 
             client.sendMessage(new ChatMessage(ChatMessage.MESSAGE, sMsg));
             tf.setText("");

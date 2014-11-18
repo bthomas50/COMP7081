@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import server.TeamData;
+import server.User;
 import server.UserData;
 
 /**
@@ -38,8 +39,6 @@ public class AnonRoleTest {
         boolean expResult = false;
         boolean result = instance.canAllChat();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -50,11 +49,9 @@ public class AnonRoleTest {
         System.out.println("canTeamChat");
         String team = "";
         AnonRole instance = new AnonRole();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.canTeamChat(team);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -64,11 +61,9 @@ public class AnonRoleTest {
     public void testGetEnum() {
         System.out.println("getEnum");
         AnonRole instance = new AnonRole();
-        int expResult = 0;
+        int expResult = Role.E_ANON;
         int result = instance.getEnum();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -82,8 +77,6 @@ public class AnonRoleTest {
         boolean expResult = false;
         boolean result = instance.canAddUser(ud);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -97,8 +90,6 @@ public class AnonRoleTest {
         boolean expResult = false;
         boolean result = instance.canRemoveUser(ud);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -113,8 +104,6 @@ public class AnonRoleTest {
         boolean expResult = false;
         boolean result = instance.canChangeRole(oldUD, newUD);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -129,8 +118,6 @@ public class AnonRoleTest {
         boolean expResult = false;
         boolean result = instance.canSetTeam(oldUD, newUD);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -145,8 +132,6 @@ public class AnonRoleTest {
         boolean expResult = false;
         boolean result = instance.canSetCompany(oldTD, newTD);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -155,12 +140,37 @@ public class AnonRoleTest {
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        Role o = null;
         AnonRole instance = new AnonRole();
-        int expResult = 0;
-        int result = instance.compareTo(o);
+
+        Role o = new AdminRole();
+        int expResult = Role.E_ANON - Role.E_ADMIN;
+        int result = instance.compareTo(o);        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println(Role.E_ANON - Role.E_ADMIN);
+        
+        o = new AnonRole();
+        expResult = Role.E_ANON - Role.E_ANON;
+        result = instance.compareTo(o);
+        assertEquals(expResult, result);
+        System.out.println(Role.E_ANON - Role.E_ANON);
+        
+        User u = null;
+        o = new UserRole(u);
+        expResult = Role.E_ANON - Role.E_USER;
+        result = instance.compareTo(o);
+        assertEquals(expResult, result);
+        System.out.println(Role.E_ANON - Role.E_USER);
+        
+        o = new DevRole(u);
+        expResult = Role.E_ANON - Role.E_DEV;
+        result = instance.compareTo(o);
+        assertEquals(expResult, result);
+        System.out.println(Role.E_ANON - Role.E_DEV);
+        
+        o = new ScrumMasterRole(u);
+        expResult = Role.E_ANON - Role.E_MASTER;
+        result = instance.compareTo(o);
+        assertEquals(expResult, result);
+        System.out.println(Role.E_ANON - Role.E_MASTER);
     }
 }

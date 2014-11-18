@@ -1,3 +1,4 @@
+// Test Tag 1
 package server;
 
 import server.MsgHandlers.LogoutHandler;
@@ -53,31 +54,30 @@ public final class SlashCommand
             return E_IGNORED; // not a command
         }
 
-          eRole = pUser.getRoleEnum();
-//
-//        // Do nothing and consume the command if the user has no management or
-//        // team chat rights so the server doesn't have to check every message.
-//        if (eRole < Role.E_DEV)
-//            return E_CONSUMED;
+        eRole = pUser.getRoleEnum();
         
         as = s.trim().split("\\s+");
-        s = as[0];
-
-        if (s.length() == 0)
-            return E_CONSUMED;
-
         l = as.length;
-        if (l > 1 && s.equals("/t"))
-        {
-            // team chat: return the string's char index after /t plus a space
-            return sMsg.indexOf("/t") + 3;
-        }
-        // Only admins and scrum masters are allowed beyond this point
-//        if (eRole < Role.E_MASTER)
-//            return E_CONSUMED;
-
+        s = as[0];
+        
         switch (s)
         {
+            case "/t":
+                if (l > 1)
+                {
+                    // team chat: return the string's char index after /t plus a space
+                    return sMsg.indexOf("/t") + 3;
+                }
+            break;
+
+            case "/c":
+                if (l > 1)
+                {
+                    // company chat: return the string's char index after /c plus a space as a negative number
+                    return -(sMsg.indexOf("/c") + 3);
+                }
+            break;
+            
             case "/adduser":
                 if (l < 4)
                 {
@@ -203,7 +203,7 @@ public final class SlashCommand
                 { }
                 return E_CONSUMED;
             default:
-                s = "Server> Valid commands: /adduser /deluser /setrole /setteam /setcompany /t\n";
+                s = "Server> Valid commands: /adduser /deluser /setrole /setteam /setcompany /t /c\n";
         }
 
         pUser.sendMessage(s);

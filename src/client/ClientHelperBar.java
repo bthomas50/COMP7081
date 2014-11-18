@@ -13,13 +13,14 @@ import javax.swing.JPanel;
  */
 public class ClientHelperBar extends JPanel implements ActionListener
 {
-	private final JButton m_jbQLogin = new JButton("Quick Login");
-	private final JButton m_jbAdd = new JButton("Add");
-	private final JButton m_jbDel = new JButton("Del");
-	private final JButton m_jbRole = new JButton("Role");
-	private final JButton m_jbTeam = new JButton("Team");
-	private final JButton m_jbCompany = new JButton("Company");
+    private final JButton m_jbQLogin = new JButton("Quick Login");
+    private final JButton m_jbAdd = new JButton("Add");
+    private final JButton m_jbDel = new JButton("Del");
+    private final JButton m_jbRole = new JButton("Role");
+    private final JButton m_jbTeam = new JButton("Team");
+    private final JButton m_jbCompany = new JButton("Company");
     private final JCheckBox m_jchkTC = new JCheckBox("Team Chat");
+    private final JCheckBox m_jchkCC = new JCheckBox("Company Chat");
     
     private final ClientLoginDialog m_dlgQLogin;
     private final ClientAddUserDialog m_dlgAdd;
@@ -41,6 +42,7 @@ public class ClientHelperBar extends JPanel implements ActionListener
         m_jbTeam.addActionListener(this);
         m_jbCompany.addActionListener(this);
         m_jchkTC.addActionListener(this);
+        m_jchkCC.addActionListener(this);
         
         this.add(m_jbQLogin);
         this.add(m_jbAdd);
@@ -49,6 +51,7 @@ public class ClientHelperBar extends JPanel implements ActionListener
         this.add(m_jbTeam);
         this.add(m_jbCompany);
         this.add(m_jchkTC);
+        this.add(m_jchkCC);
 
         m_dlgQLogin = new ClientLoginDialog(pParent, false);
         m_dlgAdd = new ClientAddUserDialog(pParent, false);
@@ -61,7 +64,7 @@ public class ClientHelperBar extends JPanel implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-		Object o = e.getSource();
+	Object o = e.getSource();
         JDialog d = null;
 
         if (!m_pParent.connected)
@@ -87,5 +90,10 @@ public class ClientHelperBar extends JPanel implements ActionListener
     public boolean isTeamChatOn()
     {
         return m_jchkTC.isSelected();
+    }
+
+    public boolean isCompanyChatOn()
+    {
+        return m_jchkCC.isSelected();
     }
 }
