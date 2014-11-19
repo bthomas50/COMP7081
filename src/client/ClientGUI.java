@@ -119,8 +119,8 @@ public class ClientGUI extends JFrame implements ActionListener {
 		tfPort.setText("" + defaultPort);
 		tfServer.setText(defaultHost);
 		// let the user change them
-		tfServer.setEditable(false);
-		tfPort.setEditable(false);
+		tfServer.setEditable(true);
+		tfPort.setEditable(true);
 		// don't react to a <CR> after the username
 //		tf.removeActionListener(this);
 		connected = false;
@@ -218,7 +218,8 @@ public class ClientGUI extends JFrame implements ActionListener {
             catch(Throwable ex)
             {
                 System.err.println("Not running as a web start app");
-		new ClientGUI("localhost", 1500);
+//		new ClientGUI("localhost", 1500);
+		new ClientGUI("ec2-54-69-194-123.us-west-2.compute.amazonaws.com", 1500);
             }
 	}
 }
