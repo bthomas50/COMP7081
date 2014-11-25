@@ -53,13 +53,20 @@ public class UserTest {
     
     @AfterClass
     public static void tearDownClass() {
-        try
-        {
-            TEST_STREAM.close();
-        }
-        catch(IOException e)
-        {}
-        TEST_PRINTER.close();
+    }
+
+    /**
+     * Test of getUserThread method, of class User.
+     */
+    @Test
+    public void testGetUserThread() {
+        System.out.println("getUserThread");
+//        User instance = null;
+//        UserCallable expResult = null;
+//        UserCallable result = instance.getUserThread();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -68,24 +75,12 @@ public class UserTest {
     @Test
     public void testGetUD() {
         System.out.println("getUD");
-        for(int i = 0; i < 3; i++)
-        {
-            UserData expResult = new UserData("TestName" + i, "TestPass" + i, new AnonRole(), "TestTeam" + i);
-            UserData result = TEST_USERS[i].getUD();
-            if(!testEquality(result, expResult))
-            {
-                fail("UDs don't match before setting");
-            }
-            UserData oldData = result;
-            expResult.setPassword("blah");
-            TEST_USERS[i].setUD(expResult);
-            result = TEST_USERS[i].getUD();
-            if(!testEquality(result, expResult))
-            {
-                fail("UDs don't match after setting");
-            }
-            TEST_USERS[i].setUD(oldData);
-        }
+//        User instance = null;
+//        UserData expResult = null;
+//        UserData result = instance.getUD();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -94,18 +89,23 @@ public class UserTest {
     @Test
     public void testSetUD() {
         System.out.println("setUD");
-        for(int i = 0; i < 3; i++)
-        {
-            UserData expResult = new UserData("TestName" + i, "blah" + i, new AnonRole(), "TestTeam" + i);
-            UserData oldData = TEST_USERS[i].getUD();
-            TEST_USERS[i].setUD(expResult);
-            UserData result = TEST_USERS[i].getUD();
-            if(!testEquality(result, expResult))
-            {
-                fail("UDs don't match after setting");
-            }
-            TEST_USERS[i].setUD(oldData);
-        }
+//        UserData userData = null;
+//        User instance = null;
+//        instance.setUD(userData);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of closeUserThread method, of class User.
+     */
+    @Test
+    public void testCloseUserThread() {
+        System.out.println("closeUserThread");
+//        User instance = null;
+//        instance.closeUserThread();
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -114,12 +114,12 @@ public class UserTest {
     @Test
     public void testGetUserID() {
         System.out.println("getUserID");
-        for(int i = 0; i < 3; i++)
-        {
-            String expResult = "TestName" + i;
-            String result = TEST_USERS[i].getUserID();
-            assertEquals(result, expResult);
-        }
+//        User instance = null;
+//        String expResult = "";
+//        String result = instance.getUserID();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -128,16 +128,12 @@ public class UserTest {
     @Test
     public void testGetRole() {
         System.out.println("getRole");
-        for(int i = 0; i < 3; i++)
-        {
-            Role result = TEST_USERS[i].getRole();
-            assertEquals(result.getEnum(), 0);
-            Role expResult = RoleFactory.createRole("Admin", TEST_USERS[i]);
-            TEST_USERS[i].setRole(expResult);
-            result = TEST_USERS[i].getRole();
-            assertEquals(result.getEnum(), expResult.getEnum());
-            TEST_USERS[i].setRole(new AnonRole());
-        }
+//        User instance = null;
+//        Role expResult = null;
+//        Role result = instance.getRole();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -146,18 +142,25 @@ public class UserTest {
     @Test
     public void testGetRoleEnum() {
         System.out.println("getRoleEnum");
-        for(int i = 0; i < 3; i++)
-        {
-            int expResult = 0;
-            int result = TEST_USERS[i].getRoleEnum();
-            assertEquals(expResult, result);
-            Role newRole = RoleFactory.createRole("Admin", TEST_USERS[i]);
-            TEST_USERS[i].setRole(newRole);
-            expResult = newRole.getEnum();
-            result = TEST_USERS[i].getRoleEnum();
-            assertEquals(result, expResult);
-            TEST_USERS[i].setRole(RoleFactory.createRole("Anonymous", TEST_USERS[i]));
-        }
+//        User instance = null;
+//        int expResult = 0;
+//        int result = instance.getRoleEnum();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setRole method, of class User.
+     */
+    @Test
+    public void testSetRole() {
+        System.out.println("setRole");
+//        Role r = null;
+//        User instance = null;
+//        instance.setRole(r);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -166,12 +169,25 @@ public class UserTest {
     @Test
     public void testGetTeamName() {
         System.out.println("getTeamName");
-        for(int i = 0; i < 3; i++)
-        {
-            String expResult = "TestTeam" + i;
-            String result = TEST_USERS[i].getTeamName();
-            assertEquals(result, expResult);
-        }
+//        User instance = null;
+//        String expResult = "";
+//        String result = instance.getTeamName();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setTeamName method, of class User.
+     */
+    @Test
+    public void testSetTeamName() {
+        System.out.println("setTeamName");
+//        String teamName = "";
+//        User instance = null;
+//        instance.setTeamName(teamName);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -180,12 +196,12 @@ public class UserTest {
     @Test
     public void testGetPassword() {
         System.out.println("getPassword");
-        for(int i = 0; i < 3; i++)
-        {
-            String expResult = "TestPass" + i;
-            String result = TEST_USERS[i].getPassword();
-            assertEquals(result, expResult);
-        }
+//        User instance = null;
+//        String expResult = "";
+//        String result = instance.getPassword();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -194,20 +210,13 @@ public class UserTest {
     @Test
     public void testSendMessage() {
         System.out.println("sendMessage");
-        String message = "test\n";
-        for(int i = 0; i < 3; i++)
-        {
-            TEST_USERS[i].sendMessage(message);
-            EXP_STREAM_CONTENTS += message;
-            try
-            {
-                assertEquals(TEST_STREAM.toString("UTF-8"), EXP_STREAM_CONTENTS);
-            }
-            catch(UnsupportedEncodingException e)
-            {
-                assumeNoException(e);
-            }
-        }
+//        String message = "";
+//        User instance = null;
+//        boolean expResult = false;
+//        boolean result = instance.sendMessage(message);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
     /**
@@ -216,24 +225,25 @@ public class UserTest {
     @Test
     public void testGetServer() {
         System.out.println("getServer");
-        for(int i = 0; i < 3; i++)
-        {
-            assertNull(TEST_USERS[i].getServer());
-        }
+//        User instance = null;
+//        Server expResult = null;
+//        Server result = instance.getServer();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 
-    private static boolean testEquality(UserData data1, UserData data2)
-    {
-        if(data1.getRole() == null)
-        {
-            return (data1.getPassword().equals(data2.getPassword()) &&
-                    data2.getRole() == null &&
-                    data1.getTeam().equals(data2.getTeam()) &&
-                    data1.getUserID().equals(data2.getUserID()));
-        }
-        return (data1.getPassword().equals(data2.getPassword()) &&
-                data1.getRole().getEnum() == data2.getRole().getEnum() &&
-                data1.getTeam().equals(data2.getTeam()) &&
-                data1.getUserID().equals(data2.getUserID()));
+    /**
+     * Test of getCompany method, of class User.
+     */
+    @Test
+    public void testGetCompany() {
+        System.out.println("getCompany");
+//        User instance = null;
+//        String expResult = "";
+//        String result = instance.getCompany();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
     }
 }

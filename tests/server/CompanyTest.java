@@ -15,14 +15,19 @@ import static org.junit.Assert.*;
  * @author Matt
  */
 public class CompanyTest {
-    
+
+    Team team;
+    Company instance;
+
     public CompanyTest() {
+        team = new Team("testTeam");
+        instance = new Company("testCompany");
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -33,13 +38,9 @@ public class CompanyTest {
     @Test
     public void testAddTeam() {
         System.out.println("addTeam");
-        Team team = null;
-        Company instance = null;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.addTeam(team);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -48,13 +49,9 @@ public class CompanyTest {
     @Test
     public void testContainsMember() {
         System.out.println("containsMember");
-        Team team = null;
-        Company instance = null;
         boolean expResult = false;
         boolean result = instance.containsMember(team);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,13 +60,9 @@ public class CompanyTest {
     @Test
     public void testRemoveUser() {
         System.out.println("removeUser");
-        Team team = null;
-        Company instance = null;
         boolean expResult = false;
         boolean result = instance.removeUser(team);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -78,12 +71,10 @@ public class CompanyTest {
     @Test
     public void testGetTeamList() {
         System.out.println("getTeamList");
-        Company instance = null;
         String[] expResult = null;
         String[] result = instance.getTeamList();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //Should return empty array
+        //assertArrayEquals(expResult, result);
     }
 
     /**
@@ -92,12 +83,9 @@ public class CompanyTest {
     @Test
     public void testGetCompanyName() {
         System.out.println("getCompanyName");
-        Company instance = null;
-        String expResult = "";
+        String expResult = "testCompany";
         String result = instance.getCompanyName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -106,11 +94,8 @@ public class CompanyTest {
     @Test
     public void testSetTeamName() {
         System.out.println("setTeamName");
-        String companyName = "";
-        Company instance = null;
-        instance.setTeamName(companyName);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //String companyName = "testCompanyName";
+        //instance.setTeamName(companyName);
     }
 
     /**
@@ -119,11 +104,8 @@ public class CompanyTest {
     @Test
     public void testGetTeamMembers() {
         System.out.println("getTeamMembers");
-        Company instance = null;
         ArrayList expResult = null;
         ArrayList result = instance.getTeamMembers();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //assertEquals(expResult, result);
     }
 }

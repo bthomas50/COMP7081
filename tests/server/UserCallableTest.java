@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
  *
  * @author Matt
  */
-public class TeamDataTest {
+public class UserCallableTest {
     
-    public TeamDataTest() {
+    public UserCallableTest() {
     }
     
     @BeforeClass
@@ -27,55 +27,56 @@ public class TeamDataTest {
     }
 
     /**
-     * Test of getTeamName method, of class TeamData.
+     * Test of call method, of class UserCallable.
      */
     @Test
-    public void testGetTeamName() {
-        System.out.println("getTeamName");
-//        TeamData instance = null;
-//        String expResult = "";
-//        String result = instance.getTeamName();
+    public void testCall() {
+        System.out.println("call");
+//        UserCallable instance = null;
+//        Boolean expResult = null;
+//        Boolean result = instance.call();
 //        assertEquals(expResult, result);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setTeamName method, of class TeamData.
+     * Test of close method, of class UserCallable.
      */
     @Test
-    public void testSetTeamName() {
-        System.out.println("setTeamName");
-//        String teamName = "";
-//        TeamData instance = null;
-//        instance.setTeamName(teamName);
+    public void testClose() {
+        System.out.println("close");
+//        UserCallable instance = null;
+//        instance.close();
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getCompanyName method, of class TeamData.
+     * Test of writeMsg method, of class UserCallable.
      */
     @Test
-    public void testGetCompanyName() {
-        System.out.println("getCompanyName");
-//        TeamData instance = null;
-//        String expResult = "";
-//        String result = instance.getCompanyName();
+    public void testWriteMsg() {
+        System.out.println("writeMsg");
+//        String msg = "";
+//        UserCallable instance = null;
+//        boolean expResult = false;
+//        boolean result = instance.writeMsg(msg);
 //        assertEquals(expResult, result);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setCompanyName method, of class TeamData.
+     * Test of getServer method, of class UserCallable.
      */
     @Test
-    public void testSetCompanyName() {
-        System.out.println("setCompanyName");
-//        String companyName = "";
-//        TeamData instance = null;
-//        instance.setCompanyName(companyName);
+    public void testGetServer() {
+        System.out.println("getServer");
+//        UserCallable instance = null;
+//        Server expResult = null;
+//        Server result = instance.getServer();
+//        assertEquals(expResult, result);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
