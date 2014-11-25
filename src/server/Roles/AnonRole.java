@@ -32,6 +32,12 @@ public class AnonRole implements Role
     {
         return Role.E_ANON;
     }
+    
+    @Override
+    public String toString()
+    {
+        return Role.ANONYMOUS;
+    }
 
     @Override
     public boolean canAddUser(UserData ud)
