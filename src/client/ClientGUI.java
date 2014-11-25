@@ -219,7 +219,7 @@ public class ClientGUI extends JFrame implements ActionListener {
             {
                 System.err.println("Not running as a web start app");
 //		new ClientGUI("localhost", 1500);
-		new ClientGUI("ec2-54-69-194-123.us-west-2.compute.amazonaws.com", 1500);
+		new ClientGUI("ec2-54-148-79-116.us-west-2.compute.amazonaws.com", 1500);
             }
 	}
 }
