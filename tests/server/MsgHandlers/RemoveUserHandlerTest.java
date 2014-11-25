@@ -42,6 +42,6 @@ public class RemoveUserHandlerTest {
         System.out.println("handle");
         User user = u;
         String name = "test1";
-        RemoveUserHandler.handle(user, name);
+        //RemoveUserHandler.handle(user, name);
     }
 }
