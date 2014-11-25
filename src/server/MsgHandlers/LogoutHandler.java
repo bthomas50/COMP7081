@@ -16,6 +16,10 @@ public class LogoutHandler
 {
     public static void handle(User pUser)
     {
+        if(pUser.getServer() == null) 
+        {
+            throw new IllegalStateException("user has no server");
+        }
         pUser.sendMessage("Logged out.");
         pUser.getServer().display(pUser.getUserID() + " logged out.");
         pUser.getServer().removeUser(pUser);

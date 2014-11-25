@@ -43,6 +43,6 @@ public class SetTeamHandlerTest {
         User pUser = u;
         String username = "test1";
         String newTeamName = "testTeam";
-        SetTeamHandler.handle(pUser, username, newTeamName);
+        //SetTeamHandler.handle(pUser, username, newTeamName);
     }
 }

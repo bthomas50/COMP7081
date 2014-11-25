@@ -28,8 +28,8 @@ public class Team {
     
     //Attempts to add a user object to teamMembers
     //Will return true if successful, false if not
-    public boolean addUser(User user) {
-        return teamMembers.add(user);
+    public void addUser(User user) {
+        teamMembers.add(user);
     }
     
     public boolean containsMember(User user) {

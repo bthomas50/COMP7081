@@ -16,6 +16,10 @@ public class WhoIsInHandler
 {
     public static void handle(User pUser)
     {
+        if(pUser.getServer() == null)
+        {
+            throw new IllegalStateException("user has no server");
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("Logged in users:\n");
         for(User u : pUser.getServer().getAllUsers())

@@ -92,8 +92,4 @@ public class User {
         return ut.getServer();
     }
     
-    public String getCompany()
-    {
-        throw new UnsupportedOperationException();
-    }
 }

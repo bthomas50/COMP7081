@@ -4,6 +4,7 @@
  */
 package server;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -16,11 +17,21 @@ import static org.junit.Assert.*;
  */
 public class TeamTest {
     
+    private static Team[] TEST_TEAMS;
+    private static User[] TEST_USERS;
+
     public TeamTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        TEST_TEAMS = new Team[3];
+        TEST_USERS = new User[3];
+        for(int i = 0; i < 3; i++)
+        {
+            TEST_TEAMS[i] = new Team("TestName"+i, "TestComp"+i);
+            TEST_USERS[i] = new User("User"+i, "", "", "", null, new PrintWriter(System.out), null);
+        }
     }
     
     @AfterClass
@@ -87,7 +98,7 @@ public class TeamTest {
     }
 
     /**
-     * Test of getTeamName method, of class Team.
+     * Test of get/setTeamName methods, of class Team.
      */
     @Test
     public void testGetTeamName() {

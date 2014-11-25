@@ -261,7 +261,24 @@ public class Client
      */
     class ListenFromServer extends Thread
     {
-
+        private Observer obs;
+        
+        ListenFromServer(Observer o)
+        {
+            obs = o;
+        }
+        
+        ListenFromServer()
+        {
+            obs = null;
+        }
+        
+        void SetListener(Observer o)
+        {
+            obs = o;
+        }
+        
+        @Override
         public void run()
         {
             while (true)
@@ -279,6 +296,10 @@ public class Client
                         break;
                     }
                     // if console mode print the message and add back the prompt
+                    if(obs != null)
+                    {
+                        obs.update(null, msg);
+                    }
                     if (cg == null)
                     {
                         System.out.println(msg);

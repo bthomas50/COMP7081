@@ -4,11 +4,22 @@
  */
 package server;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.junit.Assume.*;
+import server.Roles.AnonRole;
 import server.Roles.Role;
+import server.Roles.RoleFactory;
 
 /**
  *
@@ -18,9 +29,26 @@ public class UserTest {
     
     public UserTest() {
     }
-    
+    private static User[] TEST_USERS;
+    private static ByteArrayOutputStream TEST_STREAM;
+    private static PrintStream TEST_PRINTER;
+    private static String EXP_STREAM_CONTENTS = "";
     @BeforeClass
     public static void setUpClass() {
+        TEST_USERS = new User[3];
+        TEST_STREAM = new ByteArrayOutputStream(1024);
+        TEST_PRINTER = new PrintStream(TEST_STREAM);
+        for(int i = 0; i < 3; i++)
+        {
+            TEST_USERS[i] = new User("TestName" + i, 
+                                     "TestPass" + i, 
+                                     "Anonymous",
+                                     "TestTeam" + i, 
+                                     new BufferedReader(new InputStreamReader(System.in)), 
+                                     new PrintWriter(TEST_PRINTER), 
+                                     null);
+            EXP_STREAM_CONTENTS += "You are connected as " + "TestName" + i + "\n";
+        }
     }
     
     @AfterClass
