@@ -83,16 +83,7 @@ public class UserCallable implements Callable<Boolean>
                         + message.substring(iResult));
             }
         }
-        else
-        {
-            if (user.getRole().canTeamChat(user.getTeamName()))
-            {
-                server.companyBroadcast(
-                        user.getCompany(),
-                        user.getUserID() + " ([C]" + user.getCompany() + "): "
-                        + message.substring(-iResult));
-            }
-        }
+       
 
         return disconnected;
     }
