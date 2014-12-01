@@ -19,6 +19,8 @@ public class Client
 
     // if I use a GUI or not
     private ClientGUI cg;
+    
+    private Observer obs;
 
     // the server, the port and the username
     private String server, username;
@@ -80,7 +82,7 @@ public class Client
         }
 
         // creates the Thread to listen from the server 
-        new ListenFromServer().start();
+        new ListenFromServer(obs).start();
 		// Send our username to the server this is the only message that we
         // will send as a String. All other messages will be ChatMessage objects
         try
@@ -94,12 +96,11 @@ public class Client
 
             if (astr.length >= 2)
             {
-                sOutput.println(astr[0] + " " + astr[1]);
+                sendMessage(new ChatMessage(0,astr[0] + " " + astr[1]));
             } else
             {
-                sOutput.println(astr[0]);
+                sendMessage(new ChatMessage(0, astr[0]));
             }
-            sOutput.flush();
         } catch (IOException eIO)
         {
             display("Exception doing login : " + eIO);
@@ -127,12 +128,16 @@ public class Client
     /*
      * To send a message to the server
      */
-    void sendMessage(ChatMessage msg)
+    synchronized void sendMessage(ChatMessage msg)
     {
         sOutput.println(msg.getMessage());
         sOutput.flush();
     }
 
+    void setListener(Observer o)
+    {
+        obs = o;
+    }
     /*
      * When something goes wrong
      * Close the Input/Output streams and disconnect not much to do in the catch clause
@@ -286,6 +291,10 @@ public class Client
                 try
                 {
                     String msg = (String) sInput.readLine();
+                    if(obs != null)
+                    {
+                        obs.update(null, msg);
+                    }
                     if(msg == null)
                     {
                         display("Server has close the connection");
@@ -296,10 +305,6 @@ public class Client
                         break;
                     }
                     // if console mode print the message and add back the prompt
-                    if(obs != null)
-                    {
-                        obs.update(null, msg);
-                    }
                     if (cg == null)
                     {
                         System.out.println(msg);
@@ -310,6 +315,10 @@ public class Client
                     }
                 } catch (IOException e)
                 {
+                    if(obs != null)
+                    {
+                        obs.update(null, null);
+                    }
                     display("Server has close the connection: " + e);
                     if (cg != null)
                     {

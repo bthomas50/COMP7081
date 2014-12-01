@@ -11,6 +11,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,49 +21,83 @@ import java.util.Observer;
 public class RandomClient implements Observer
 {
     private final Client c;
-    private final int threadIdx;
+    private final String realUsername;
     private volatile boolean responseReceived;
+    private volatile boolean disconnected;
+    private volatile boolean loggedIn;
+    
+    private long msTimeOut = 500;
     
     public RandomClient(String hostName, int port, String username, String password, int threadIdx)
     {
-        c = new Client(hostName, port, username + " " + password);
-        this.threadIdx = threadIdx;
+        realUsername = username + threadIdx;
+        disconnected = false;
+        responseReceived = false;
+        c = new Client(hostName, port, realUsername + " " + password);
     }
     
     public boolean start()
     {
-        return c.start();
+        c.setListener(this);
+        c.start();
+        while(!loggedIn && !disconnected)
+        {
+            Thread.yield();
+        }
+        return !disconnected;
     }
     
-    public float runLatencyTests()
+    public boolean runLatencyTests()
     {
-        long startMillis = System.currentTimeMillis();
-        long elapsedMillis = 0;
-        for(int i = 0; i < 100; i++)
+        
+        for(int i = 0; i < 10; i++)
         {
-            c.sendMessage(new ChatMessage(0, "hello" + threadIdx));
-            while(!responseReceived)
+            sendMessage();
+            while(!responseReceived && !disconnected)
             {
                 Thread.yield();
             }
+            if(disconnected) break;
             responseReceived = false;
         }
-        elapsedMillis = System.currentTimeMillis() - startMillis;
-        return (float) elapsedMillis / 100000f;
+        return !disconnected;
+        
     }
     
     public void stop()
     {
         c.sendMessage(new ChatMessage(0, "/logout"));
+        while(!disconnected)
+        {
+            Thread.yield();
+        }
     }
 
     @Override
-    public void update(Observable o, Object arg)
+    public synchronized void update(Observable o, Object arg)
     {
+        if(arg == null)
+        {
+            disconnected = true;
+            return;
+        }
         String str = (String) arg;
-        if(str.contains(Integer.toString(threadIdx)))
+        
+        if(str.startsWith("Logged"))
         {
             responseReceived = true;
+            return;
         }
+        if(str.endsWith("user"))
+        {
+            loggedIn = true;
+            return;
+        }
+    }
+    
+    
+    private synchronized void sendMessage()
+    {
+        c.sendMessage(new ChatMessage(0, "/whoisin"));
     }
 }

@@ -50,7 +50,7 @@ public class UserCallable implements Callable<Boolean>
         String message;
         try
         {
-            if (sInput.ready())
+            if (!sInput.ready())
             {
                 return disconnected;
             }
