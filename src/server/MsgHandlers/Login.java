@@ -42,6 +42,10 @@ public class Login
         {
             //block until we get a message.
             String msg = sInput.readLine();
+            if(msg == null)
+            {
+                throw new IOException();
+            }
             String[] strs = msg.split(" ");
             Connection conn = DB.connect();
             if(strs.length >= 2 && 

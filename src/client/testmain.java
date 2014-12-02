@@ -14,9 +14,9 @@ public class testmain
 {
     public static void main(String[] args)
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 100; i++)
         {
-            RandomClient c = new RandomClient("localhost", 1500, "testuser", "password", 5);
+            RandomClient c = new RandomClient("ec2-54-148-79-116.us-west-2.compute.amazonaws.com", 1500, "testuser", "password", 1);
             if(!c.start())
             {
                 System.out.println("failed to connect.");
