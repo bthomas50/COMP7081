@@ -1,4 +1,4 @@
-// Cloud Test 1
+//TEST: Auto Restart after Bamboo Tests
 package server;
 
 import server.MsgHandlers.Login;
